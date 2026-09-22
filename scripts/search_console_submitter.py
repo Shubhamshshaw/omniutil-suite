@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Google Search Console & Indexing API Submitter Script
+Google Search Console & Indexing API Submitter Script for OmniUtil Suite
 Submits all deployed URLs to Google Indexing API for immediate crawling and indexing.
 """
 
@@ -12,21 +12,21 @@ import urllib.parse
 import time
 
 URLS_TO_INDEX = [
-    "https://shubhamshshaw.github.io/fifa-stadium-companion/",
-    "https://shubhamshshaw.github.io/fifa-stadium-companion/tools/file-size-compressor.html",
-    "https://shubhamshshaw.github.io/fifa-stadium-companion/tools/image-converter.html",
-    "https://shubhamshshaw.github.io/fifa-stadium-companion/tools/word-counter.html",
-    "https://shubhamshshaw.github.io/fifa-stadium-companion/tools/qr-code-generator.html",
-    "https://shubhamshshaw.github.io/fifa-stadium-companion/tools/password-generator.html",
-    "https://shubhamshshaw.github.io/fifa-stadium-companion/tools/age-calculator.html",
-    "https://shubhamshshaw.github.io/fifa-stadium-companion/tools/text-case-converter.html",
-    "https://shubhamshshaw.github.io/fifa-stadium-companion/tools/json-formatter.html",
-    "https://shubhamshshaw.github.io/fifa-stadium-companion/tools/color-converter.html",
-    "https://shubhamshshaw.github.io/fifa-stadium-companion/tools/base64-converter.html",
-    "https://shubhamshshaw.github.io/fifa-stadium-companion/tools/stopwatch-timer.html",
-    "https://shubhamshshaw.github.io/fifa-stadium-companion/tools/markdown-to-html.html",
-    "https://shubhamshshaw.github.io/fifa-stadium-companion/tools/unit-converter.html",
-    "https://shubhamshshaw.github.io/fifa-stadium-companion/tools/image-to-html-css.html"
+    "https://shubhamshshaw.github.io/omniutil-suite/",
+    "https://shubhamshshaw.github.io/omniutil-suite/tools/file-size-compressor.html",
+    "https://shubhamshshaw.github.io/omniutil-suite/tools/image-converter.html",
+    "https://shubhamshshaw.github.io/omniutil-suite/tools/word-counter.html",
+    "https://shubhamshshaw.github.io/omniutil-suite/tools/qr-code-generator.html",
+    "https://shubhamshshaw.github.io/omniutil-suite/tools/password-generator.html",
+    "https://shubhamshshaw.github.io/omniutil-suite/tools/age-calculator.html",
+    "https://shubhamshshaw.github.io/omniutil-suite/tools/text-case-converter.html",
+    "https://shubhamshshaw.github.io/omniutil-suite/tools/json-formatter.html",
+    "https://shubhamshshaw.github.io/omniutil-suite/tools/color-converter.html",
+    "https://shubhamshshaw.github.io/omniutil-suite/tools/base64-converter.html",
+    "https://shubhamshshaw.github.io/omniutil-suite/tools/stopwatch-timer.html",
+    "https://shubhamshshaw.github.io/omniutil-suite/tools/markdown-to-html.html",
+    "https://shubhamshshaw.github.io/omniutil-suite/tools/unit-converter.html",
+    "https://shubhamshshaw.github.io/omniutil-suite/tools/image-to-html-css.html"
 ]
 
 INDEXING_API_ENDPOINT = "https://indexing.googleapis.com/v3/urlNotifications:publish"
@@ -36,7 +36,6 @@ def find_service_account_file():
     if env_path and os.path.exists(env_path):
         return env_path
     
-    # Check workspace or common paths
     possible_paths = [
         "service_account.json",
         "google_credentials.json",
@@ -76,23 +75,18 @@ def main():
     if cred_file:
         print(f"[+] Service Account Credentials Found: {cred_file}")
     else:
-        print("[!] Note: No explicit Google Service Account JSON key found in local environment.")
+        print("[!] Note: Place your service_account.json key in the project root to authenticate.")
         print("[!] Generating request payloads & executing URL notification batch submission...\n")
 
-    success_count = 0
     for idx, target_url in enumerate(URLS_TO_INDEX, 1):
         print(f"[{idx}/{len(URLS_TO_INDEX)}] Submitting: {target_url}")
         ok, status_msg = submit_url(target_url)
-        if ok:
-            success_count += 1
-            print(f"    -> {status_msg}")
-        else:
-            print(f"    -> Queued/Submitted: {status_msg}")
+        print(f"    -> {status_msg}")
         time.sleep(0.1)
 
     print("\n------------------------------------------------------------------")
-    print(f"[*] Summary: Submitted {len(URLS_TO_INDEX)} URLs for immediate Google Indexing.")
-    print("[*] Sitemap reference: https://shubhamshshaw.github.io/fifa-stadium-companion/sitemap.xml")
+    print(f"[*] Summary: Processed submission for {len(URLS_TO_INDEX)} URLs.")
+    print("[*] Live Sitemap reference: https://shubhamshshaw.github.io/omniutil-suite/sitemap.xml")
     print("==================================================================\n")
 
 if __name__ == "__main__":

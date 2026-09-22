@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://shubhamshshaw.github.io/fifa-stadium-companion/sitemap.xml
+Sitemap: https://shubhamshshaw.github.io/omniutil-suite/sitemap.xml
