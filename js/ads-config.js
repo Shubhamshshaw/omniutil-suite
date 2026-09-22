@@ -1,7 +1,7 @@
 /* Google AdSense Centralized Configuration */
 window.OMNI_ADS_CONFIG = {
-  // Replace with your Google AdSense Publisher ID (e.g., 'pub-1234567890123456')
-  publisherId: 'ca-pub-1234567890123456',
+  // Replace with your Google AdSense Publisher ID (e.g., 'pub-8836410103198896')
+  publisherId: 'ca-pub-8836410103198896',
   
   // Ad Slot IDs (Replace with your created units from Google AdSense dashboard)
   slots: {
