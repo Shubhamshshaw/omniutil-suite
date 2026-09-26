@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Image to HTML & CSS Generator - Convert Images to Code | OmniUtil</title>
-  <meta name="description" content="Convert images into pure HTML & CSS code pixel art matrices. Extract pixel colors into downloadable CSS box-shadows or HTML div grids.">
-  <meta name="keywords" content="image to html, image to css, css pixel art generator, photo to css converter, image to code">
-  <link rel="canonical" href="https://shubhamshshaw.github.io/fifa-stadium-companion/tools/image-to-html-css.html">
+  <title>Image to HTML & CSS Generator - High-Fidelity Pixel Code | OmniUtil</title>
+  <meta name="description" content="Convert images into high-resolution HTML & CSS pixel code. Supports CSS box-shadow, HTML CSS Grid, and responsive SVG pixel art output with aspect ratio preservation.">
+  <meta name="keywords" content="image to html, image to css, css pixel art generator, high resolution photo to css, image to code converter">
+  <link rel="canonical" href="https://shubhamshshaw.github.io/omniutil-suite/tools/image-to-html-css.html">
 
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Image to HTML & CSS Generator | OmniUtil">
-  <meta property="og:description" content="Convert uploaded images into pure HTML & CSS pixel grid artwork client-side.">
-  <meta property="og:url" content="https://shubhamshshaw.github.io/fifa-stadium-companion/tools/image-to-html-css.html">
+  <meta property="og:title" content="High-Precision Image to HTML & CSS Generator | OmniUtil">
+  <meta property="og:description" content="Convert uploaded images into high-definition HTML & CSS pixel artwork with aspect ratio retention.">
+  <meta property="og:url" content="https://shubhamshshaw.github.io/omniutil-suite/tools/image-to-html-css.html">
 
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8836410103198896" crossorigin="anonymous"></script>
 
@@ -37,36 +37,71 @@
         <div class="tool-header">
           <div class="tool-title-group">
             <h1>💻 Image to HTML/CSS Converter</h1>
-            <p class="tool-description">Convert graphics and images into standalone pure HTML & CSS code pixel matrices.</p>
+            <p class="tool-description">High-fidelity pixel conversion engine with aspect ratio preservation and multi-format CSS/HTML exports.</p>
           </div>
         </div>
 
         <div id="drop-zone" class="drop-zone">
           <div class="drop-zone-icon">🎨</div>
-          <h3 style="margin-bottom: 0.5rem;">Upload Graphic or Icon</h3>
-          <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 1rem;">PNG, JPG, WEBP recommended</p>
+          <h3 style="margin-bottom: 0.5rem;">Upload Image or Artwork</h3>
+          <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 1rem;">Supports PNG, JPG, WEBP, SVG graphics</p>
           <input type="file" id="file-input" accept="image/*" style="display: none;">
-          <button class="btn btn-primary" onclick="document.getElementById('file-input').click()">Browse Image</button>
+          <button class="btn btn-primary" onclick="document.getElementById('file-input').click()">Browse File</button>
         </div>
 
         <div id="img-code-controls" style="margin-top: 1.5rem; display: none;">
-          <div class="form-group" style="max-width: 300px; margin-bottom: 1.5rem;">
-            <label class="form-label">Pixel Grid Resolution: <span id="res-val">16x16</span></label>
-            <input type="range" id="res-range" min="8" max="48" value="16" step="4" class="input-field">
+          <!-- Fine-Tuning Controls -->
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; background: var(--bg-secondary); border: 1px solid var(--card-border); padding: 1.25rem; border-radius: var(--radius-md); margin-bottom: 1.5rem;">
+            
+            <div class="form-group">
+              <label class="form-label">Resolution Quality: <span id="res-val" style="color: var(--accent-primary); font-weight: 700;">64 px</span></label>
+              <input type="range" id="res-range" min="16" max="128" value="64" step="8" class="input-field">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Output Code Mode:</label>
+              <select id="mode-select" class="select-field">
+                <option value="box-shadow">CSS Box-Shadow (Single Div)</option>
+                <option value="html-grid">HTML CSS Grid Matrix</option>
+                <option value="svg-matrix">Responsive SVG Matrix</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Pixel Size: <span id="pixel-val">4px</span></label>
+              <input type="range" id="pixel-range" min="1" max="10" value="4" step="1" class="input-field">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Color Sampling:</label>
+              <select id="sampling-select" class="select-field">
+                <option value="crisp">Crisp Pixelated (Nearest)</option>
+                <option value="smooth">Smooth Anti-aliased</option>
+              </select>
+            </div>
           </div>
 
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
-            <div style="text-align: center;">
-              <h4>CSS Pixel Art Preview</h4>
-              <div id="pixel-preview-container" style="display: flex; justify-content: center; align-items: center; min-height: 200px; background: var(--bg-secondary); border-radius: var(--radius-md); padding: 1rem;"></div>
+          <!-- Dimension Stats Banner -->
+          <div style="display: flex; gap: 1rem; justify-content: space-between; align-items: center; background: var(--bg-tertiary); padding: 0.75rem 1rem; border-radius: var(--radius-sm); margin-bottom: 1.5rem; font-size: 0.85rem;">
+            <span>Input Aspect Ratio: <strong id="stat-aspect">1:1</strong></span>
+            <span>Grid Matrix: <strong id="stat-grid" style="color: var(--accent-primary);">64 x 64 px</strong></span>
+            <span>Total CSS Elements: <strong id="stat-count">4,096</strong></span>
+          </div>
+
+          <!-- Preview & Code Panels -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+            <div>
+              <h4 style="margin-bottom: 0.75rem;">High-Fidelity Code Preview</h4>
+              <div id="pixel-preview-container" style="display: flex; justify-content: center; align-items: center; min-height: 280px; max-height: 450px; overflow: auto; background: var(--bg-secondary); border: 1px solid var(--card-border); border-radius: var(--radius-md); padding: 1.5rem;"></div>
             </div>
+
             <div>
               <div class="form-group">
                 <div class="form-label">
                   <span>Generated HTML & CSS Code:</span>
                   <button class="btn btn-sm btn-primary" onclick="copyCSSCode()">Copy Code</button>
                 </div>
-                <textarea id="generated-code" class="textarea-field" style="min-height: 200px; font-family: 'Fira Code', monospace;" readonly></textarea>
+                <textarea id="generated-code" class="textarea-field" style="min-height: 280px; font-family: 'Fira Code', monospace; font-size: 0.8rem;" readonly></textarea>
               </div>
             </div>
           </div>
@@ -95,11 +130,15 @@
   </footer>
 
   <script src="../js/app.js"></script>
+  <script src="../js/ads-config.js"></script>
   <script>
     let uploadedImg = null;
     const fileInput = document.getElementById('file-input');
     const dropZone = document.getElementById('drop-zone');
     const resRange = document.getElementById('res-range');
+    const pixelRange = document.getElementById('pixel-range');
+    const modeSelect = document.getElementById('mode-select');
+    const samplingSelect = document.getElementById('sampling-select');
 
     dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('dragover'); });
     dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
@@ -110,72 +149,153 @@
     });
 
     fileInput.addEventListener('change', (e) => { if (e.target.files.length) handleImage(e.target.files[0]); });
-    resRange.addEventListener('input', (e) => {
-      document.getElementById('res-val').textContent = `${e.target.value}x${e.target.value}`;
-      if (uploadedImg) convertToCSSArt();
+
+    [resRange, pixelRange, modeSelect, samplingSelect].forEach(el => {
+      el.addEventListener('input', () => {
+        document.getElementById('res-val').textContent = `${resRange.value} px`;
+        document.getElementById('pixel-val').textContent = `${pixelRange.value}px`;
+        if (uploadedImg) convertImageToCode();
+      });
     });
 
     function handleImage(file) {
-      if (!file.type.startsWith('image/')) return;
+      if (!file.type.startsWith('image/')) {
+        showToast('Please select a valid image file', 'error');
+        return;
+      }
       const reader = new FileReader();
       reader.onload = (e) => {
         const img = new Image();
         img.onload = () => {
           uploadedImg = img;
           document.getElementById('img-code-controls').style.display = 'block';
-          convertToCSSArt();
+          convertImageToCode();
         };
         img.src = e.target.result;
       };
       reader.readAsDataURL(file);
     }
 
-    function convertToCSSArt() {
+    function convertImageToCode() {
       if (!uploadedImg) return;
-      const size = parseInt(resRange.value);
-      const canvas = document.createElement('canvas');
-      canvas.width = size;
-      canvas.height = size;
-      const ctx = canvas.getContext('2d');
-      ctx.drawImage(uploadedImg, 0, 0, size, size);
 
-      const imgData = ctx.getImageData(0, 0, size, size).data;
-      const pixelSize = 8; // px
-      const shadows = [];
+      const maxDim = parseInt(resRange.value);
+      const pixelSize = parseInt(pixelRange.value);
+      const mode = modeSelect.value;
+      const smooth = samplingSelect.value === 'smooth';
 
-      for (let y = 0; y < size; y++) {
-        for (let x = 0; x < size; x++) {
-          const i = (y * size + x) * 4;
-          const r = imgData[i];
-          const g = imgData[i + 1];
-          const b = imgData[i + 2];
-          const a = (imgData[i + 3] / 255).toFixed(2);
-
-          if (a > 0.05) {
-            const posX = (x + 1) * pixelSize;
-            const posY = (y + 1) * pixelSize;
-            shadows.push(`${posX}px ${posY}px 0 rgba(${r},${g},${b},${a})`);
-          }
-        }
+      // Preserve Natural Image Aspect Ratio
+      let gridW, gridH;
+      const aspect = uploadedImg.width / uploadedImg.height;
+      if (uploadedImg.width >= uploadedImg.height) {
+        gridW = maxDim;
+        gridH = Math.max(1, Math.round(maxDim / aspect));
+      } else {
+        gridH = maxDim;
+        gridW = Math.max(1, Math.round(maxDim * aspect));
       }
 
-      const cssCode = `<style>
-.pixel-art {
+      document.getElementById('stat-aspect').textContent = `${uploadedImg.width} x ${uploadedImg.height}`;
+      document.getElementById('stat-grid').textContent = `${gridW} x ${gridH} px`;
+      document.getElementById('stat-count').textContent = (gridW * gridH).toLocaleString();
+
+      const canvas = document.createElement('canvas');
+      canvas.width = gridW;
+      canvas.height = gridH;
+      const ctx = canvas.getContext('2d');
+
+      ctx.imageSmoothingEnabled = smooth;
+      ctx.drawImage(uploadedImg, 0, 0, gridW, gridH);
+
+      const imgData = ctx.getImageData(0, 0, gridW, gridH).data;
+
+      let generatedCode = '';
+      let previewHTML = '';
+
+      if (mode === 'box-shadow') {
+        const shadows = [];
+        for (let y = 0; y < gridH; y++) {
+          for (let x = 0; x < gridW; x++) {
+            const i = (y * gridW + x) * 4;
+            const r = imgData[i];
+            const g = imgData[i + 1];
+            const b = imgData[i + 2];
+            const a = (imgData[i + 3] / 255).toFixed(2);
+
+            if (a > 0.02) {
+              const posX = (x + 1) * pixelSize;
+              const posY = (y + 1) * pixelSize;
+              shadows.push(`${posX}px ${posY}px 0 rgba(${r},${g},${b},${a})`);
+            }
+          }
+        }
+
+        generatedCode = `<style>
+.high-res-pixel-art {
   width: ${pixelSize}px;
   height: ${pixelSize}px;
   background: transparent;
   box-shadow: ${shadows.join(',\n    ')};
 }
 </style>
-<div class="pixel-art"></div>`;
+<div class="high-res-pixel-art"></div>`;
 
-      document.getElementById('generated-code').value = cssCode;
+        previewHTML = `<div style="width: ${pixelSize}px; height: ${pixelSize}px; background: transparent; box-shadow: ${shadows.join(',')}; margin: 0 auto;"></div>`;
 
-      // Render Preview
-      const previewContainer = document.getElementById('pixel-preview-container');
-      previewContainer.innerHTML = `
-        <div style="width: ${pixelSize}px; height: ${pixelSize}px; background: transparent; box-shadow: ${shadows.join(',')}; transform: scale(1.5); margin: ${(size * pixelSize) / 2}px;"></div>
-      `;
+      } else if (mode === 'html-grid') {
+        const pixels = [];
+        for (let y = 0; y < gridH; y++) {
+          for (let x = 0; x < gridW; x++) {
+            const i = (y * gridW + x) * 4;
+            const r = imgData[i];
+            const g = imgData[i + 1];
+            const b = imgData[i + 2];
+            const a = (imgData[i + 3] / 255).toFixed(2);
+            pixels.push(`<div style="background:rgba(${r},${g},${b},${a});"></div>`);
+          }
+        }
+
+        generatedCode = `<style>
+.pixel-grid-container {
+  display: grid;
+  grid-template-columns: repeat(${gridW}, ${pixelSize}px);
+  grid-template-rows: repeat(${gridH}, ${pixelSize}px);
+  width: max-content;
+}
+</style>
+<div class="pixel-grid-container">
+  ${pixels.join('\n  ')}
+</div>`;
+
+        previewHTML = `<div style="display: grid; grid-template-columns: repeat(${gridW}, ${pixelSize}px); grid-template-rows: repeat(${gridH}, ${pixelSize}px); width: max-content;">${pixels.join('')}</div>`;
+
+      } else if (mode === 'svg-matrix') {
+        const svgPixels = [];
+        for (let y = 0; y < gridH; y++) {
+          for (let x = 0; x < gridW; x++) {
+            const i = (y * gridW + x) * 4;
+            const r = imgData[i];
+            const g = imgData[i + 1];
+            const b = imgData[i + 2];
+            const a = (imgData[i + 3] / 255).toFixed(2);
+            if (a > 0.02) {
+              svgPixels.push(`<rect x="${x * pixelSize}" y="${y * pixelSize}" width="${pixelSize}" height="${pixelSize}" fill="rgba(${r},${g},${b},${a})" />`);
+            }
+          }
+        }
+
+        const totalW = gridW * pixelSize;
+        const totalH = gridH * pixelSize;
+
+        generatedCode = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${totalW} ${totalH}" width="${totalW}" height="${totalH}">
+  ${svgPixels.join('\n  ')}
+</svg>`;
+
+        previewHTML = generatedCode;
+      }
+
+      document.getElementById('generated-code').value = generatedCode;
+      document.getElementById('pixel-preview-container').innerHTML = previewHTML;
     }
 
     function copyCSSCode() {
