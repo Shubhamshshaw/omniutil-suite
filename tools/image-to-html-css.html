@@ -37,7 +37,7 @@
         <div class="tool-header">
           <div class="tool-title-group">
             <h1>💻 Image to HTML/CSS Converter</h1>
-            <p class="tool-description">High-fidelity pixel conversion engine with aspect ratio preservation and multi-format CSS/HTML exports.</p>
+            <p class="tool-description">High-fidelity pixel conversion engine with aspect ratio preservation and centered multi-format CSS/HTML exports.</p>
           </div>
         </div>
 
@@ -195,6 +195,9 @@
         gridW = Math.max(1, Math.round(maxDim * aspect));
       }
 
+      const totalW = gridW * pixelSize;
+      const totalH = gridH * pixelSize;
+
       document.getElementById('stat-aspect').textContent = `${uploadedImg.width} x ${uploadedImg.height}`;
       document.getElementById('stat-grid').textContent = `${gridW} x ${gridH} px`;
       document.getElementById('stat-count').textContent = (gridW * gridH).toLocaleString();
@@ -223,24 +226,37 @@
             const a = (imgData[i + 3] / 255).toFixed(2);
 
             if (a > 0.02) {
-              const posX = (x + 1) * pixelSize;
-              const posY = (y + 1) * pixelSize;
+              const posX = x * pixelSize;
+              const posY = y * pixelSize;
               shadows.push(`${posX}px ${posY}px 0 rgba(${r},${g},${b},${a})`);
             }
           }
         }
 
         generatedCode = `<style>
-.high-res-pixel-art {
+.pixel-art-wrapper {
+  width: ${totalW}px;
+  height: ${totalH}px;
+  position: relative;
+  margin: 0 auto;
+}
+.pixel-art-core {
   width: ${pixelSize}px;
   height: ${pixelSize}px;
+  position: absolute;
+  top: 0;
+  left: 0;
   background: transparent;
   box-shadow: ${shadows.join(',\n    ')};
 }
 </style>
-<div class="high-res-pixel-art"></div>`;
+<div class="pixel-art-wrapper">
+  <div class="pixel-art-core"></div>
+</div>`;
 
-        previewHTML = `<div style="width: ${pixelSize}px; height: ${pixelSize}px; background: transparent; box-shadow: ${shadows.join(',')}; margin: 0 auto;"></div>`;
+        previewHTML = `<div style="width: ${totalW}px; height: ${totalH}px; position: relative; margin: 0 auto;">
+  <div style="width: ${pixelSize}px; height: ${pixelSize}px; position: absolute; top: 0; left: 0; background: transparent; box-shadow: ${shadows.join(',')};"></div>
+</div>`;
 
       } else if (mode === 'html-grid') {
         const pixels = [];
@@ -261,13 +277,14 @@
   grid-template-columns: repeat(${gridW}, ${pixelSize}px);
   grid-template-rows: repeat(${gridH}, ${pixelSize}px);
   width: max-content;
+  margin: 0 auto;
 }
 </style>
 <div class="pixel-grid-container">
   ${pixels.join('\n  ')}
 </div>`;
 
-        previewHTML = `<div style="display: grid; grid-template-columns: repeat(${gridW}, ${pixelSize}px); grid-template-rows: repeat(${gridH}, ${pixelSize}px); width: max-content;">${pixels.join('')}</div>`;
+        previewHTML = `<div style="display: grid; grid-template-columns: repeat(${gridW}, ${pixelSize}px); grid-template-rows: repeat(${gridH}, ${pixelSize}px); width: max-content; margin: 0 auto;">${pixels.join('')}</div>`;
 
       } else if (mode === 'svg-matrix') {
         const svgPixels = [];
@@ -284,10 +301,7 @@
           }
         }
 
-        const totalW = gridW * pixelSize;
-        const totalH = gridH * pixelSize;
-
-        generatedCode = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${totalW} ${totalH}" width="${totalW}" height="${totalH}">
+        generatedCode = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${totalW} ${totalH}" width="${totalW}" height="${totalH}" style="display: block; margin: 0 auto;">
   ${svgPixels.join('\n  ')}
 </svg>`;
 
