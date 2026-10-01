@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive CSS Flexbox Playground | OmniUtil</title>
+  <meta name="description" content="Visualize and experiment with CSS flexbox layout properties in real-time with generated code.">
+  <link rel="canonical" href="https://shubhamshshaw.github.io/omniutil-suite/tools/flexbox-playground.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Interactive CSS Flexbox Playground | OmniUtil">
+  <meta property="og:description" content="Visualize and experiment with CSS flexbox layout properties in real-time with generated code.">
+  <meta property="og:url" content="https://shubhamshshaw.github.io/omniutil-suite/tools/flexbox-playground.html">
+
+  <!-- Google AdSense Verification & Auto ads script -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8836410103198896" crossorigin="anonymous"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css">
+  
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-container">
+      <a href="../index.html" class="brand-logo"><div class="brand-icon">OU</div><span>OmniUtil</span></a>
+      <div class="nav-controls">
+        <button id="search-trigger" class="search-trigger"><span>🔍</span><span>Search tools...</span><span class="shortcut-badge">⌘K</span></button>
+        <button id="theme-toggle" class="btn-icon">☀️</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <div class="tool-layout">
+      <div class="tool-card">
+        <div class="tool-header">
+          <div class="tool-title-group">
+            <h1>📦 Interactive CSS Flexbox Playground</h1>
+            <p class="tool-description">Visualize and experiment with CSS flexbox layout properties in real-time with generated code.</p>
+          </div>
+        </div>
+        
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin-bottom:1.5rem;">
+          <div class="form-group">
+            <label class="form-label">flex-direction</label>
+            <select id="fb-dir" class="select-field" onchange="updateFlex()">
+              <option value="row">row</option>
+              <option value="row-reverse">row-reverse</option>
+              <option value="column">column</option>
+              <option value="column-reverse">column-reverse</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">justify-content</label>
+            <select id="fb-justify" class="select-field" onchange="updateFlex()">
+              <option value="flex-start">flex-start</option>
+              <option value="center">center</option>
+              <option value="flex-end">flex-end</option>
+              <option value="space-between">space-between</option>
+              <option value="space-around">space-around</option>
+              <option value="space-evenly">space-evenly</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">align-items</label>
+            <select id="fb-align" class="select-field" onchange="updateFlex()">
+              <option value="stretch">stretch</option>
+              <option value="center">center</option>
+              <option value="flex-start">flex-start</option>
+              <option value="flex-end">flex-end</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">flex-wrap</label>
+            <select id="fb-wrap" class="select-field" onchange="updateFlex()">
+              <option value="nowrap">nowrap</option>
+              <option value="wrap">wrap</option>
+              <option value="wrap-reverse">wrap-reverse</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Live Flexbox Container</label>
+          <div id="fb-stage" style="display:flex;min-height:220px;background:var(--bg-secondary);border:2px dashed var(--accent-primary);border-radius:var(--radius-md);padding:1rem;gap:12px;overflow:auto;">
+            <div style="background:var(--accent-primary);color:#fff;font-weight:700;padding:1.5rem;border-radius:8px;display:flex;align-items:center;justify-content:center;">Box 1</div>
+            <div style="background:var(--accent-secondary);color:#fff;font-weight:700;padding:1.5rem;border-radius:8px;display:flex;align-items:center;justify-content:center;">Box 2</div>
+            <div style="background:#ec4899;color:#fff;font-weight:700;padding:1.5rem;border-radius:8px;display:flex;align-items:center;justify-content:center;">Box 3</div>
+            <div style="background:#10b981;color:#fff;font-weight:700;padding:1.5rem;border-radius:8px;display:flex;align-items:center;justify-content:center;">Box 4</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.5rem;">
+            <label class="form-label">Generated Container CSS</label>
+            <button class="btn btn-sm btn-primary" onclick="copyCSS()">Copy CSS</button>
+          </div>
+          <textarea id="fb-code" class="textarea-field" style="font-family:'Fira Code',monospace;min-height:90px;" readonly></textarea>
+        </div>
+        
+      </div>
+      <aside>
+        <div class="ad-unit ad-sidebar">
+          <span class="ad-label">Advertisement</span>
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8836410103198896" data-ad-slot="3000000036" data-ad-format="auto"></ins>
+          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <div id="search-modal-overlay" class="modal-overlay">
+    <div class="search-modal">
+      <div class="search-input-wrapper"><span>🔍</span><input type="text" id="search-input" placeholder="Search utilities..."></div>
+      <div id="search-results" class="search-results"></div>
+    </div>
+  </div>
+
+  <footer class="app-footer">
+    <div class="footer-bottom">&copy; 2026 OmniUtil. All rights reserved. Built for maximum speed, security, and responsive performance.</div>
+  </footer>
+
+  <script src="../js/app.js"></script>
+  <script src="../js/ads-config.js"></script>
+  <script>
+
+        function updateFlex() {
+          const dir = document.getElementById('fb-dir').value;
+          const jc = document.getElementById('fb-justify').value;
+          const ai = document.getElementById('fb-align').value;
+          const wrap = document.getElementById('fb-wrap').value;
+          const stage = document.getElementById('fb-stage');
+
+          stage.style.flexDirection = dir;
+          stage.style.justifyContent = jc;
+          stage.style.alignItems = ai;
+          stage.style.flexWrap = wrap;
+
+          document.getElementById('fb-code').value = `.container {\n  display: flex;\n  flex-direction: ${dir};\n  justify-content: ${jc};\n  align-items: ${ai};\n  flex-wrap: ${wrap};\n  gap: 12px;\n}`;
+        }
+        function copyCSS() {
+          const val = document.getElementById('fb-code').value;
+          if (val) copyToClipboard(val, 'Flexbox CSS copied!');
+        }
+        updateFlex();
+        
+  </script>
+</body>
+</html>

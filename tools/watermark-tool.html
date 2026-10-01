@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Watermark Stamper | OmniUtil</title>
+  <meta name="description" content="Add customized copyright text watermarks with opacity sliders, font sizes, and positioning directly in browser.">
+  <link rel="canonical" href="https://shubhamshshaw.github.io/omniutil-suite/tools/watermark-tool.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Image Watermark Stamper | OmniUtil">
+  <meta property="og:description" content="Add customized copyright text watermarks with opacity sliders, font sizes, and positioning directly in browser.">
+  <meta property="og:url" content="https://shubhamshshaw.github.io/omniutil-suite/tools/watermark-tool.html">
+
+  <!-- Google AdSense Verification & Auto ads script -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8836410103198896" crossorigin="anonymous"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css">
+  
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-container">
+      <a href="../index.html" class="brand-logo"><div class="brand-icon">OU</div><span>OmniUtil</span></a>
+      <div class="nav-controls">
+        <button id="search-trigger" class="search-trigger"><span>🔍</span><span>Search tools...</span><span class="shortcut-badge">⌘K</span></button>
+        <button id="theme-toggle" class="btn-icon">☀️</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <div class="tool-layout">
+      <div class="tool-card">
+        <div class="tool-header">
+          <div class="tool-title-group">
+            <h1>💧 Image Watermark Stamper</h1>
+            <p class="tool-description">Add customized copyright text watermarks with opacity sliders, font sizes, and positioning directly in browser.</p>
+          </div>
+        </div>
+        
+        <div id="drop-zone" class="drop-zone" onclick="document.getElementById('wm-file').click()">
+          <div class="drop-zone-icon">💧</div>
+          <h3>Select or Drop Image to Watermark</h3>
+          <input type="file" id="wm-file" accept="image/*" style="display:none;" onchange="loadWMImage(this.files[0])">
+        </div>
+        <div id="wm-controls" style="display:none;margin-top:1.5rem;">
+          <div style="display:grid;grid-template-columns:2fr 1fr 1fr;gap:1rem;margin-bottom:1.5rem;align-items:end;">
+            <div class="form-group" style="margin-bottom:0;">
+              <label class="form-label">Watermark Text</label>
+              <input type="text" id="wm-text" class="input-field" value="© OmniUtil 2026" oninput="drawWatermark()">
+            </div>
+            <div class="form-group" style="margin-bottom:0;">
+              <label class="form-label">Opacity: <span id="v-wm-op">0.6</span></label>
+              <input type="range" id="wm-op" min="0.1" max="1" step="0.05" value="0.6" class="input-field" oninput="drawWatermark()">
+            </div>
+            <button class="btn btn-primary" onclick="downloadWatermark()" style="height:44px;">Download PNG</button>
+          </div>
+          <div style="text-align:center;background:var(--bg-secondary);padding:1.5rem;border-radius:var(--radius-md);">
+            <canvas id="wm-canvas" style="max-width:100%;max-height:400px;border-radius:8px;"></canvas>
+          </div>
+        </div>
+        
+      </div>
+      <aside>
+        <div class="ad-unit ad-sidebar">
+          <span class="ad-label">Advertisement</span>
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8836410103198896" data-ad-slot="3000000060" data-ad-format="auto"></ins>
+          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <div id="search-modal-overlay" class="modal-overlay">
+    <div class="search-modal">
+      <div class="search-input-wrapper"><span>🔍</span><input type="text" id="search-input" placeholder="Search utilities..."></div>
+      <div id="search-results" class="search-results"></div>
+    </div>
+  </div>
+
+  <footer class="app-footer">
+    <div class="footer-bottom">&copy; 2026 OmniUtil. All rights reserved. Built for maximum speed, security, and responsive performance.</div>
+  </footer>
+
+  <script src="../js/app.js"></script>
+  <script src="../js/ads-config.js"></script>
+  <script>
+
+        let wmImg = null;
+        function loadWMImage(file) {
+          if (!file) return;
+          const r = new FileReader();
+          r.onload = e => {
+            const img = new Image();
+            img.onload = () => {
+              wmImg = img;
+              document.getElementById('wm-controls').style.display = 'block';
+              drawWatermark();
+            };
+            img.src = e.target.result;
+          };
+          r.readAsDataURL(file);
+        }
+        function drawWatermark() {
+          if (!wmImg) return;
+          const text = document.getElementById('wm-text').value;
+          const op = parseFloat(document.getElementById('wm-op').value);
+          document.getElementById('v-wm-op').textContent = op;
+
+          const canvas = document.getElementById('wm-canvas');
+          canvas.width = wmImg.width;
+          canvas.height = wmImg.height;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(wmImg, 0, 0);
+
+          const fontSize = Math.max(18, Math.round(canvas.width / 24));
+          ctx.font = `bold ${fontSize}px Inter, sans-serif`;
+          ctx.fillStyle = `rgba(255, 255, 255, ${op})`;
+          ctx.textAlign = 'right';
+          ctx.fillText(text, canvas.width - 24, canvas.height - 24);
+        }
+        function downloadWatermark() {
+          const canvas = document.getElementById('wm-canvas');
+          const a = document.createElement('a');
+          a.download = 'watermarked.png';
+          a.href = canvas.toDataURL('image/png');
+          a.click();
+          showToast('Watermarked image downloaded!', 'success');
+        }
+        
+  </script>
+</body>
+</html>

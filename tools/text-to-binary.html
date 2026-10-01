@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text to Binary / Hex Converter | OmniUtil</title>
+  <meta name="description" content="Convert text characters into binary (01), hexadecimal, and decimal representations and decode binary back to text.">
+  <link rel="canonical" href="https://shubhamshshaw.github.io/omniutil-suite/tools/text-to-binary.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Text to Binary / Hex Converter | OmniUtil">
+  <meta property="og:description" content="Convert text characters into binary (01), hexadecimal, and decimal representations and decode binary back to text.">
+  <meta property="og:url" content="https://shubhamshshaw.github.io/omniutil-suite/tools/text-to-binary.html">
+
+  <!-- Google AdSense Verification & Auto ads script -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8836410103198896" crossorigin="anonymous"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css">
+  
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-container">
+      <a href="../index.html" class="brand-logo"><div class="brand-icon">OU</div><span>OmniUtil</span></a>
+      <div class="nav-controls">
+        <button id="search-trigger" class="search-trigger"><span>🔍</span><span>Search tools...</span><span class="shortcut-badge">⌘K</span></button>
+        <button id="theme-toggle" class="btn-icon">☀️</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <div class="tool-layout">
+      <div class="tool-card">
+        <div class="tool-header">
+          <div class="tool-title-group">
+            <h1>0️⃣1️⃣ Text to Binary / Hex Converter</h1>
+            <p class="tool-description">Convert text characters into binary (01), hexadecimal, and decimal representations and decode binary back to text.</p>
+          </div>
+        </div>
+        
+        <div style="display:flex;gap:0.5rem;margin-bottom:1rem;">
+          <button id="tab-t2b" class="btn btn-primary" onclick="setMode('t2b')">Text to Binary</button>
+          <button id="tab-b2t" class="btn btn-secondary" onclick="setMode('b2t')">Binary to Text</button>
+        </div>
+        <div class="form-group">
+          <label class="form-label" id="tb-input-label">Text to Convert</label>
+          <textarea id="tb-input" class="textarea-field" style="min-height:120px;" placeholder="Type text here...">Hello World</textarea>
+        </div>
+        <div style="display:flex;gap:0.75rem;margin:1rem 0;">
+          <button class="btn btn-primary" onclick="processBinary()">Convert</button>
+          <button class="btn btn-secondary" onclick="copyBinary()">Copy Binary</button>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Binary (8-bit bytes)</label>
+          <textarea id="tb-binary" class="textarea-field" style="min-height:100px;font-family:'Fira Code',monospace;" readonly></textarea>
+        </div>
+        <div class="form-group" id="hex-section">
+          <label class="form-label">Hexadecimal</label>
+          <input type="text" id="tb-hex" class="input-field" style="font-family:'Fira Code',monospace;" readonly>
+        </div>
+        
+      </div>
+      <aside>
+        <div class="ad-unit ad-sidebar">
+          <span class="ad-label">Advertisement</span>
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8836410103198896" data-ad-slot="3000000027" data-ad-format="auto"></ins>
+          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <div id="search-modal-overlay" class="modal-overlay">
+    <div class="search-modal">
+      <div class="search-input-wrapper"><span>🔍</span><input type="text" id="search-input" placeholder="Search utilities..."></div>
+      <div id="search-results" class="search-results"></div>
+    </div>
+  </div>
+
+  <footer class="app-footer">
+    <div class="footer-bottom">&copy; 2026 OmniUtil. All rights reserved. Built for maximum speed, security, and responsive performance.</div>
+  </footer>
+
+  <script src="../js/app.js"></script>
+  <script src="../js/ads-config.js"></script>
+  <script>
+
+        let currentMode = 't2b';
+        function setMode(mode) {
+          currentMode = mode;
+          document.getElementById('tab-t2b').className = mode === 't2b' ? 'btn btn-primary' : 'btn btn-secondary';
+          document.getElementById('tab-b2t').className = mode === 'b2t' ? 'btn btn-primary' : 'btn btn-secondary';
+          document.getElementById('tb-input-label').textContent = mode === 't2b' ? 'Text to Convert' : 'Binary Bytes (e.g. 01001000 01101001)';
+          document.getElementById('hex-section').style.display = mode === 't2b' ? 'block' : 'none';
+          processBinary();
+        }
+        function processBinary() {
+          const val = document.getElementById('tb-input').value;
+          if (currentMode === 't2b') {
+            const binaryArr = [];
+            const hexArr = [];
+            for (let i = 0; i < val.length; i++) {
+              const code = val.charCodeAt(i);
+              binaryArr.push(code.toString(2).padStart(8, '0'));
+              hexArr.push(code.toString(16).padStart(2, '0').toUpperCase());
+            }
+            document.getElementById('tb-binary').value = binaryArr.join(' ');
+            document.getElementById('tb-hex').value = hexArr.join(' ');
+          } else {
+            const bytes = val.trim().split(/\s+/);
+            try {
+              const text = bytes.map(b => String.fromCharCode(parseInt(b, 2))).join('');
+              document.getElementById('tb-binary').value = text;
+            } catch(e) {
+              document.getElementById('tb-binary').value = 'Invalid binary input';
+            }
+          }
+        }
+        function copyBinary() {
+          const val = document.getElementById('tb-binary').value;
+          if (val) copyToClipboard(val, 'Copied!');
+        }
+        document.getElementById('tb-input').addEventListener('input', processBinary);
+        processBinary();
+        
+  </script>
+</body>
+</html>

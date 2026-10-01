@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Border Radius Generator | OmniUtil</title>
+  <meta name="description" content="Craft custom CSS rounded corners with individual corner sliders, organic blob morphing, and live preview.">
+  <link rel="canonical" href="https://shubhamshshaw.github.io/omniutil-suite/tools/border-radius-generator.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="CSS Border Radius Generator | OmniUtil">
+  <meta property="og:description" content="Craft custom CSS rounded corners with individual corner sliders, organic blob morphing, and live preview.">
+  <meta property="og:url" content="https://shubhamshshaw.github.io/omniutil-suite/tools/border-radius-generator.html">
+
+  <!-- Google AdSense Verification & Auto ads script -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8836410103198896" crossorigin="anonymous"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css">
+  
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-container">
+      <a href="../index.html" class="brand-logo"><div class="brand-icon">OU</div><span>OmniUtil</span></a>
+      <div class="nav-controls">
+        <button id="search-trigger" class="search-trigger"><span>🔍</span><span>Search tools...</span><span class="shortcut-badge">⌘K</span></button>
+        <button id="theme-toggle" class="btn-icon">☀️</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <div class="tool-layout">
+      <div class="tool-card">
+        <div class="tool-header">
+          <div class="tool-title-group">
+            <h1>⬛ CSS Border Radius Generator</h1>
+            <p class="tool-description">Craft custom CSS rounded corners with individual corner sliders, organic blob morphing, and live preview.</p>
+          </div>
+        </div>
+        
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:1.5rem;">
+          <div>
+            <div class="form-group">
+              <label class="form-label">Top Left: <span id="v-tl">20px</span></label>
+              <input type="range" id="r-tl" min="0" max="100" value="20" class="input-field" oninput="updateRadius()">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Top Right: <span id="v-tr">20px</span></label>
+              <input type="range" id="r-tr" min="0" max="100" value="20" class="input-field" oninput="updateRadius()">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Bottom Right: <span id="v-br">20px</span></label>
+              <input type="range" id="r-br" min="0" max="100" value="20" class="input-field" oninput="updateRadius()">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Bottom Left: <span id="v-bl">20px</span></label>
+              <input type="range" id="r-bl" min="0" max="100" value="20" class="input-field" oninput="updateRadius()">
+            </div>
+            <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+              <button class="btn btn-sm btn-secondary" onclick="preset(12,12,12,12)">Card (12px)</button>
+              <button class="btn btn-sm btn-secondary" onclick="preset(50,50,50,50)">Pill (50%)</button>
+              <button class="btn btn-sm btn-secondary" onclick="preset(40,10,40,10)">Leaf</button>
+              <button class="btn btn-sm btn-secondary" onclick="preset(0,40,0,40)">Diagonal</button>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:center;background:var(--bg-secondary);border-radius:var(--radius-md);border:1px solid var(--card-border);padding:2rem;">
+            <div id="radius-preview" style="width:160px;height:160px;background:var(--accent-gradient);box-shadow:var(--shadow-lg);"></div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.5rem;">
+            <label class="form-label">CSS Code</label>
+            <button class="btn btn-sm btn-primary" onclick="copyCSS()">Copy CSS</button>
+          </div>
+          <textarea id="radius-code" class="textarea-field" style="font-family:'Fira Code',monospace;min-height:70px;" readonly></textarea>
+        </div>
+        
+      </div>
+      <aside>
+        <div class="ad-unit ad-sidebar">
+          <span class="ad-label">Advertisement</span>
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8836410103198896" data-ad-slot="3000000033" data-ad-format="auto"></ins>
+          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <div id="search-modal-overlay" class="modal-overlay">
+    <div class="search-modal">
+      <div class="search-input-wrapper"><span>🔍</span><input type="text" id="search-input" placeholder="Search utilities..."></div>
+      <div id="search-results" class="search-results"></div>
+    </div>
+  </div>
+
+  <footer class="app-footer">
+    <div class="footer-bottom">&copy; 2026 OmniUtil. All rights reserved. Built for maximum speed, security, and responsive performance.</div>
+  </footer>
+
+  <script src="../js/app.js"></script>
+  <script src="../js/ads-config.js"></script>
+  <script>
+
+        function updateRadius() {
+          const tl = document.getElementById('r-tl').value;
+          const tr = document.getElementById('r-tr').value;
+          const br = document.getElementById('r-br').value;
+          const bl = document.getElementById('r-bl').value;
+          document.getElementById('v-tl').textContent = tl + 'px';
+          document.getElementById('v-tr').textContent = tr + 'px';
+          document.getElementById('v-br').textContent = br + 'px';
+          document.getElementById('v-bl').textContent = bl + 'px';
+          const css = `border-radius: ${tl}px ${tr}px ${br}px ${bl}px;`;
+          document.getElementById('radius-preview').style.borderRadius = `${tl}px ${tr}px ${br}px ${bl}px`;
+          document.getElementById('radius-code').value = css;
+        }
+        function preset(tl, tr, br, bl) {
+          document.getElementById('r-tl').value = tl;
+          document.getElementById('r-tr').value = tr;
+          document.getElementById('r-br').value = br;
+          document.getElementById('r-bl').value = bl;
+          updateRadius();
+        }
+        function copyCSS() {
+          const val = document.getElementById('radius-code').value;
+          if (val) copyToClipboard(val, 'Border radius CSS copied!');
+        }
+        updateRadius();
+        
+  </script>
+</body>
+</html>

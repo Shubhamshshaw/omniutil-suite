@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript Minifier | OmniUtil</title>
+  <meta name="description" content="Minify JavaScript code client-side by stripping comments, unnecessary whitespace, and line breaks.">
+  <link rel="canonical" href="https://shubhamshshaw.github.io/omniutil-suite/tools/js-minifier.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="JavaScript Minifier | OmniUtil">
+  <meta property="og:description" content="Minify JavaScript code client-side by stripping comments, unnecessary whitespace, and line breaks.">
+  <meta property="og:url" content="https://shubhamshshaw.github.io/omniutil-suite/tools/js-minifier.html">
+
+  <!-- Google AdSense Verification & Auto ads script -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8836410103198896" crossorigin="anonymous"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css">
+  
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-container">
+      <a href="../index.html" class="brand-logo"><div class="brand-icon">OU</div><span>OmniUtil</span></a>
+      <div class="nav-controls">
+        <button id="search-trigger" class="search-trigger"><span>🔍</span><span>Search tools...</span><span class="shortcut-badge">⌘K</span></button>
+        <button id="theme-toggle" class="btn-icon">☀️</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <div class="tool-layout">
+      <div class="tool-card">
+        <div class="tool-header">
+          <div class="tool-title-group">
+            <h1>⚡ JavaScript Minifier</h1>
+            <p class="tool-description">Minify JavaScript code client-side by stripping comments, unnecessary whitespace, and line breaks.</p>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Input JavaScript Code</label>
+          <textarea id="js-input" class="textarea-field" style="min-height:160px;font-family:'Fira Code',monospace;" placeholder="// Paste JS code here...\nfunction hello(name) {\n  console.log('Hello ' + name);\n}"></textarea>
+        </div>
+        <div style="display:flex;gap:0.75rem;margin:1rem 0;flex-wrap:wrap;">
+          <button class="btn btn-primary" onclick="minifyJS()">Minify JS</button>
+          <button class="btn btn-secondary" onclick="copyJS()">Copy Result</button>
+          <button class="btn btn-secondary" onclick="clearJS()">Clear</button>
+        </div>
+        <div id="js-stats" style="margin-bottom:1rem;color:var(--text-secondary);font-size:0.85rem;"></div>
+        <div class="form-group">
+          <label class="form-label">Minified JavaScript</label>
+          <textarea id="js-output" class="textarea-field" style="min-height:160px;font-family:'Fira Code',monospace;" readonly></textarea>
+        </div>
+        
+      </div>
+      <aside>
+        <div class="ad-unit ad-sidebar">
+          <span class="ad-label">Advertisement</span>
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8836410103198896" data-ad-slot="3000000017" data-ad-format="auto"></ins>
+          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <div id="search-modal-overlay" class="modal-overlay">
+    <div class="search-modal">
+      <div class="search-input-wrapper"><span>🔍</span><input type="text" id="search-input" placeholder="Search utilities..."></div>
+      <div id="search-results" class="search-results"></div>
+    </div>
+  </div>
+
+  <footer class="app-footer">
+    <div class="footer-bottom">&copy; 2026 OmniUtil. All rights reserved. Built for maximum speed, security, and responsive performance.</div>
+  </footer>
+
+  <script src="../js/app.js"></script>
+  <script src="../js/ads-config.js"></script>
+  <script>
+
+        function minifyJS() {
+          let js = document.getElementById('js-input').value;
+          const origLen = js.length;
+          // Strip multi-line comments
+          js = js.replace(/\/\*[\s\S]*?\*\//g, '');
+          // Strip single-line comments that are on their own line or follow statement
+          js = js.replace(/\/\/[^\n\r]*/g, '');
+          // Collapse multiple spaces/tabs into single space
+          js = js.replace(/[ \t]+/g, ' ');
+          // Remove spaces around common symbols
+          js = js.replace(/\s*([\=\+\-\*/\%\&\|\<\>\!\?\:\,\;\(\)\{\}\[\]])\s*/g, '$1');
+          // Collapse newlines
+          js = js.split('\n').map(l => l.trim()).filter(Boolean).join(';');
+          js = js.replace(/;+/g, ';');
+          js = js.replace(/\{;/g, '{').replace(/;\}/g, '}');
+          document.getElementById('js-output').value = js;
+          const newLen = js.length;
+          const saved = origLen > 0 ? (((origLen - newLen) / origLen) * 100).toFixed(1) : 0;
+          document.getElementById('js-stats').textContent = `Original: ${origLen} bytes | Minified: ${newLen} bytes | Saved: ${saved}%`;
+        }
+        function copyJS() {
+          const val = document.getElementById('js-output').value;
+          if (val) copyToClipboard(val, 'Minified JS copied!');
+        }
+        function clearJS() {
+          document.getElementById('js-input').value = '';
+          document.getElementById('js-output').value = '';
+          document.getElementById('js-stats').textContent = '';
+        }
+        
+  </script>
+</body>
+</html>

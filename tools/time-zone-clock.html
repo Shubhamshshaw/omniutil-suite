@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>World Timezone Live Clock Matrix | OmniUtil</title>
+  <meta name="description" content="Monitor current live local times across major international hubs including New York, London, Tokyo, and Sydney.">
+  <link rel="canonical" href="https://shubhamshshaw.github.io/omniutil-suite/tools/time-zone-clock.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="World Timezone Live Clock Matrix | OmniUtil">
+  <meta property="og:description" content="Monitor current live local times across major international hubs including New York, London, Tokyo, and Sydney.">
+  <meta property="og:url" content="https://shubhamshshaw.github.io/omniutil-suite/tools/time-zone-clock.html">
+
+  <!-- Google AdSense Verification & Auto ads script -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8836410103198896" crossorigin="anonymous"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css">
+  
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-container">
+      <a href="../index.html" class="brand-logo"><div class="brand-icon">OU</div><span>OmniUtil</span></a>
+      <div class="nav-controls">
+        <button id="search-trigger" class="search-trigger"><span>🔍</span><span>Search tools...</span><span class="shortcut-badge">⌘K</span></button>
+        <button id="theme-toggle" class="btn-icon">☀️</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <div class="tool-layout">
+      <div class="tool-card">
+        <div class="tool-header">
+          <div class="tool-title-group">
+            <h1>🕐 World Timezone Live Clock Matrix</h1>
+            <p class="tool-description">Monitor current live local times across major international hubs including New York, London, Tokyo, and Sydney.</p>
+          </div>
+        </div>
+        
+        <div id="world-clock-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;"></div>
+        
+      </div>
+      <aside>
+        <div class="ad-unit ad-sidebar">
+          <span class="ad-label">Advertisement</span>
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8836410103198896" data-ad-slot="3000000074" data-ad-format="auto"></ins>
+          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <div id="search-modal-overlay" class="modal-overlay">
+    <div class="search-modal">
+      <div class="search-input-wrapper"><span>🔍</span><input type="text" id="search-input" placeholder="Search utilities..."></div>
+      <div id="search-results" class="search-results"></div>
+    </div>
+  </div>
+
+  <footer class="app-footer">
+    <div class="footer-bottom">&copy; 2026 OmniUtil. All rights reserved. Built for maximum speed, security, and responsive performance.</div>
+  </footer>
+
+  <script src="../js/app.js"></script>
+  <script src="../js/ads-config.js"></script>
+  <script>
+
+        const CITIES = [
+          { city: 'London', tz: 'Europe/London' },
+          { city: 'New York', tz: 'America/New_York' },
+          { city: 'San Francisco', tz: 'America/Los_Angeles' },
+          { city: 'Tokyo', tz: 'Asia/Tokyo' },
+          { city: 'Paris', tz: 'Europe/Paris' },
+          { city: 'Dubai', tz: 'Asia/Dubai' },
+          { city: 'Mumbai', tz: 'Asia/Kolkata' },
+          { city: 'Sydney', tz: 'Australia/Sydney' }
+        ];
+        function renderClocks() {
+          const now = new Date();
+          const grid = document.getElementById('world-clock-grid');
+          grid.innerHTML = CITIES.map(c => {
+            const timeStr = now.toLocaleTimeString('en-US', { timeZone: c.tz, hour12: false });
+            const dateStr = now.toLocaleDateString('en-US', { timeZone: c.tz, month: 'short', day: 'numeric' });
+            return `
+              <div style="background:var(--bg-secondary);padding:1.25rem;border-radius:var(--radius-md);border:1px solid var(--card-border);text-align:center;">
+                <div style="color:var(--text-secondary);font-size:0.9rem;">${c.city}</div>
+                <div style="font-size:1.75rem;font-weight:800;color:var(--accent-primary);margin:0.5rem 0;font-family:'Fira Code',monospace;">${timeStr}</div>
+                <div style="font-size:0.8rem;color:var(--text-muted);">${dateStr}</div>
+              </div>
+            `;
+          }).join('');
+        }
+        setInterval(renderClocks, 1000);
+        renderClocks();
+        
+  </script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text to URL Slug Converter | OmniUtil</title>
+  <meta name="description" content="Convert any text into a clean URL-friendly slug with custom separators and options.">
+  <link rel="canonical" href="https://shubhamshshaw.github.io/omniutil-suite/tools/text-to-slug.html">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8836410103198896" crossorigin="anonymous"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+  <header class="app-header"><div class="header-container">
+    <a href="../index.html" class="brand-logo"><div class="brand-icon">OU</div><span>OmniUtil</span></a>
+    <div class="nav-controls">
+      <button id="search-trigger" class="search-trigger"><span>🔍</span><span>Search tools...</span><span class="shortcut-badge">⌘K</span></button>
+      <button id="theme-toggle" class="btn-icon">☀️</button>
+    </div>
+  </div></header>
+  <main class="main-wrapper"><div class="tool-layout">
+    <div class="tool-card">
+      <div class="tool-header"><div class="tool-title-group">
+        <h1>🔗 Text to URL Slug Converter</h1>
+        <p class="tool-description">Convert any text into a clean URL-friendly slug with custom separators and options.</p>
+      </div></div>
+      <div class="form-group"><label class="form-label">Input Text</label>
+<input type="text" id="slug-input" class="input-field" placeholder="My Blog Post Title Here!" oninput="convertSlug()" value="Hello World! This is my Article Title."></div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;margin:1rem 0">
+<div class="form-group"><label class="form-label">Separator</label>
+<select id="slug-sep" class="select-field" onchange="convertSlug()"><option value="-">Hyphen (-)</option><option value="_">Underscore (_)</option></select></div>
+<div class="form-group"><label class="form-label">Max Length</label>
+<input type="number" id="slug-max" class="input-field" value="0" min="0" placeholder="0 = unlimited" oninput="convertSlug()"></div>
+<div class="form-group" style="display:flex;align-items:center;gap:0.5rem;padding-top:1.5rem">
+<input type="checkbox" id="slug-lower" checked onchange="convertSlug()"> <label>Lowercase</label></div>
+</div>
+<div class="form-group"><label class="form-label">Generated Slug</label>
+<div style="display:flex;gap:0.5rem">
+<input type="text" id="slug-out" class="input-field" readonly style="flex:1;font-family:'Fira Code',monospace">
+<button class="btn btn-primary" onclick="copyToClipboard(document.getElementById('slug-out').value,'Slug copied!')">Copy</button>
+</div></div>
+    </div>
+    <aside><div class="ad-unit ad-sidebar"><span class="ad-label">Advertisement</span>
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8836410103198896" data-ad-slot="3000000007" data-ad-format="auto"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div></aside>
+  </div></main>
+  <div id="search-modal-overlay" class="modal-overlay"><div class="search-modal">
+    <div class="search-input-wrapper"><span>🔍</span><input type="text" id="search-input" placeholder="Search utilities..."></div>
+    <div id="search-results" class="search-results"></div>
+  </div></div>
+  <footer class="app-footer"><div class="footer-bottom">&copy; 2026 OmniUtil.</div></footer>
+  <script src="../js/app.js"></script>
+  <script>function convertSlug(){
+  let v=document.getElementById('slug-input').value;
+  const sep=document.getElementById('slug-sep').value;
+  const lower=document.getElementById('slug-lower').checked;
+  const max=parseInt(document.getElementById('slug-max').value)||0;
+  v=v.normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+  v=v.replace(/[^a-zA-Z0-9\s]/g,'');
+  v=v.trim().replace(/\s+/g,sep);
+  if(lower) v=v.toLowerCase();
+  if(max>0) v=v.substring(0,max);
+  document.getElementById('slug-out').value=v;
+}
+convertSlug();</script>
+</body></html>

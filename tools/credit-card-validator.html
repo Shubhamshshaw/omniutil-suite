@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Credit Card Validator & Luhn Algorithm Checker | OmniUtil</title>
+  <meta name="description" content="Verify credit and debit card number checksums using the ISO/IEC 7812 Luhn formula and identify card networks.">
+  <link rel="canonical" href="https://shubhamshshaw.github.io/omniutil-suite/tools/credit-card-validator.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Credit Card Validator & Luhn Algorithm Checker | OmniUtil">
+  <meta property="og:description" content="Verify credit and debit card number checksums using the ISO/IEC 7812 Luhn formula and identify card networks.">
+  <meta property="og:url" content="https://shubhamshshaw.github.io/omniutil-suite/tools/credit-card-validator.html">
+
+  <!-- Google AdSense Verification & Auto ads script -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8836410103198896" crossorigin="anonymous"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css">
+  
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-container">
+      <a href="../index.html" class="brand-logo"><div class="brand-icon">OU</div><span>OmniUtil</span></a>
+      <div class="nav-controls">
+        <button id="search-trigger" class="search-trigger"><span>🔍</span><span>Search tools...</span><span class="shortcut-badge">⌘K</span></button>
+        <button id="theme-toggle" class="btn-icon">☀️</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <div class="tool-layout">
+      <div class="tool-card">
+        <div class="tool-header">
+          <div class="tool-title-group">
+            <h1>💳 Credit Card Validator & Luhn Algorithm Checker</h1>
+            <p class="tool-description">Verify credit and debit card number checksums using the ISO/IEC 7812 Luhn formula and identify card networks.</p>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Card Number</label>
+          <input type="text" id="cc-num" class="input-field" placeholder="4532 0150 0000 0000" maxlength="23" oninput="validateCard(this.value)">
+        </div>
+        <div id="cc-result" style="background:var(--bg-secondary);padding:1.5rem;border-radius:var(--radius-md);border:1px solid var(--card-border);display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+          <div>Card Network: <strong id="cc-type" style="color:var(--accent-primary);">Unknown</strong></div>
+          <div>Luhn Validity: <strong id="cc-luhn" style="color:var(--text-secondary);">Awaiting input</strong></div>
+        </div>
+        
+      </div>
+      <aside>
+        <div class="ad-unit ad-sidebar">
+          <span class="ad-label">Advertisement</span>
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8836410103198896" data-ad-slot="3000000067" data-ad-format="auto"></ins>
+          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <div id="search-modal-overlay" class="modal-overlay">
+    <div class="search-modal">
+      <div class="search-input-wrapper"><span>🔍</span><input type="text" id="search-input" placeholder="Search utilities..."></div>
+      <div id="search-results" class="search-results"></div>
+    </div>
+  </div>
+
+  <footer class="app-footer">
+    <div class="footer-bottom">&copy; 2026 OmniUtil. All rights reserved. Built for maximum speed, security, and responsive performance.</div>
+  </footer>
+
+  <script src="../js/app.js"></script>
+  <script src="../js/ads-config.js"></script>
+  <script>
+
+        function luhnCheck(num) {
+          let sum = 0, alternate = false;
+          for (let i = num.length - 1; i >= 0; i--) {
+            let n = parseInt(num[i], 10);
+            if (alternate) {
+              n *= 2;
+              if (n > 9) n -= 9;
+            }
+            sum += n;
+            alternate = !alternate;
+          }
+          return (sum % 10 === 0);
+        }
+        function validateCard(val) {
+          const clean = val.replace(/\D/g, '');
+          let type = 'Unknown';
+          if (/^4/.test(clean)) type = 'Visa';
+          else if (/^5[1-5]/.test(clean)) type = 'Mastercard';
+          else if (/^3[47]/.test(clean)) type = 'American Express';
+          else if (/^6(?:011|5)/.test(clean)) type = 'Discover';
+
+          document.getElementById('cc-type').textContent = type;
+          const luhnEl = document.getElementById('cc-luhn');
+          if (clean.length >= 13) {
+            const valid = luhnCheck(clean);
+            luhnEl.textContent = valid ? '✓ Valid Checksum' : '✕ Invalid Checksum';
+            luhnEl.style.color = valid ? 'var(--success)' : 'var(--danger)';
+          } else {
+            luhnEl.textContent = 'Incomplete card number';
+            luhnEl.style.color = 'var(--text-secondary)';
+          }
+        }
+        
+  </script>
+</body>
+</html>

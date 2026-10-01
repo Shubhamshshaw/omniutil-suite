@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Restaurant Tip & Bill Split Calculator | OmniUtil</title>
+  <meta name="description" content="Calculate tip percentages, split bill amounts equally between dining guests, and compute per-person totals.">
+  <link rel="canonical" href="https://shubhamshshaw.github.io/omniutil-suite/tools/tip-calculator.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Restaurant Tip & Bill Split Calculator | OmniUtil">
+  <meta property="og:description" content="Calculate tip percentages, split bill amounts equally between dining guests, and compute per-person totals.">
+  <meta property="og:url" content="https://shubhamshshaw.github.io/omniutil-suite/tools/tip-calculator.html">
+
+  <!-- Google AdSense Verification & Auto ads script -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8836410103198896" crossorigin="anonymous"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css">
+  
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-container">
+      <a href="../index.html" class="brand-logo"><div class="brand-icon">OU</div><span>OmniUtil</span></a>
+      <div class="nav-controls">
+        <button id="search-trigger" class="search-trigger"><span>🔍</span><span>Search tools...</span><span class="shortcut-badge">⌘K</span></button>
+        <button id="theme-toggle" class="btn-icon">☀️</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <div class="tool-layout">
+      <div class="tool-card">
+        <div class="tool-header">
+          <div class="tool-title-group">
+            <h1>🍽️ Restaurant Tip & Bill Split Calculator</h1>
+            <p class="tool-description">Calculate tip percentages, split bill amounts equally between dining guests, and compute per-person totals.</p>
+          </div>
+        </div>
+        
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:1.5rem;">
+          <div>
+            <div class="form-group">
+              <label class="form-label">Bill Amount ($)</label>
+              <input type="number" id="tip-bill" class="input-field" value="85.00" min="0" step="0.5" oninput="calcTip()">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Tip Percentage (%)</label>
+              <div style="display:flex;gap:0.5rem;margin-bottom:0.5rem;">
+                <button class="btn btn-sm btn-secondary" onclick="setTip(10)">10%</button>
+                <button class="btn btn-sm btn-primary" onclick="setTip(15)">15%</button>
+                <button class="btn btn-sm btn-secondary" onclick="setTip(18)">18%</button>
+                <button class="btn btn-sm btn-secondary" onclick="setTip(20)">20%</button>
+              </div>
+              <input type="number" id="tip-pct" class="input-field" value="15" min="0" oninput="calcTip()">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Number of People</label>
+              <input type="number" id="tip-people" class="input-field" value="2" min="1" oninput="calcTip()">
+            </div>
+          </div>
+          <div style="background:var(--bg-secondary);padding:1.5rem;border-radius:var(--radius-md);border:1px solid var(--card-border);display:flex;flex-direction:column;justify-content:center;">
+            <div style="font-size:0.9rem;color:var(--text-secondary);">Total Per Person</div>
+            <div id="tip-per-person" style="font-size:2.25rem;font-weight:800;color:var(--accent-primary);margin:0.5rem 0;">$0</div>
+            <div style="font-size:0.9rem;color:var(--text-secondary);margin-top:1rem;">Total Tip: <strong id="tip-total-val" style="color:var(--text-primary);">$0</strong></div>
+            <div style="font-size:0.9rem;color:var(--text-secondary);margin-top:0.25rem;">Total Bill: <strong id="tip-grand-total" style="color:var(--text-primary);">$0</strong></div>
+          </div>
+        </div>
+        
+      </div>
+      <aside>
+        <div class="ad-unit ad-sidebar">
+          <span class="ad-label">Advertisement</span>
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8836410103198896" data-ad-slot="3000000047" data-ad-format="auto"></ins>
+          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <div id="search-modal-overlay" class="modal-overlay">
+    <div class="search-modal">
+      <div class="search-input-wrapper"><span>🔍</span><input type="text" id="search-input" placeholder="Search utilities..."></div>
+      <div id="search-results" class="search-results"></div>
+    </div>
+  </div>
+
+  <footer class="app-footer">
+    <div class="footer-bottom">&copy; 2026 OmniUtil. All rights reserved. Built for maximum speed, security, and responsive performance.</div>
+  </footer>
+
+  <script src="../js/app.js"></script>
+  <script src="../js/ads-config.js"></script>
+  <script>
+
+        function setTip(pct) {
+          document.getElementById('tip-pct').value = pct;
+          calcTip();
+        }
+        function calcTip() {
+          const bill = parseFloat(document.getElementById('tip-bill').value) || 0;
+          const tip = parseFloat(document.getElementById('tip-pct').value) || 0;
+          const people = parseInt(document.getElementById('tip-people').value) || 1;
+
+          const tipTotal = bill * (tip / 100);
+          const grandTotal = bill + tipTotal;
+          const perPerson = grandTotal / people;
+
+          document.getElementById('tip-per-person').textContent = '$' + perPerson.toFixed(2);
+          document.getElementById('tip-total-val').textContent = '$' + tipTotal.toFixed(2);
+          document.getElementById('tip-grand-total').textContent = '$' + grandTotal.toFixed(2);
+        }
+        calcTip();
+        
+  </script>
+</body>
+</html>

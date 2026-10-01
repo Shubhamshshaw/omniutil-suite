@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fancy Text Generator | OmniUtil</title>
+  <meta name="description" content="Convert text into 20+ Unicode styles: bold, italic, script, bubble, upside-down and more.">
+  <link rel="canonical" href="https://shubhamshshaw.github.io/omniutil-suite/tools/fancy-text-generator.html">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8836410103198896" crossorigin="anonymous"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+  <header class="app-header"><div class="header-container">
+    <a href="../index.html" class="brand-logo"><div class="brand-icon">OU</div><span>OmniUtil</span></a>
+    <div class="nav-controls">
+      <button id="search-trigger" class="search-trigger"><span>🔍</span><span>Search tools...</span><span class="shortcut-badge">⌘K</span></button>
+      <button id="theme-toggle" class="btn-icon">☀️</button>
+    </div>
+  </div></header>
+  <main class="main-wrapper"><div class="tool-layout">
+    <div class="tool-card">
+      <div class="tool-header"><div class="tool-title-group">
+        <h1>✨ Fancy Text Generator</h1>
+        <p class="tool-description">Convert text into 20+ Unicode styles: bold, italic, script, bubble, upside-down and more.</p>
+      </div></div>
+      <div class="form-group"><label class="form-label">Enter Text</label>
+<input type="text" id="fancy-input" class="input-field" placeholder="Type your text..." oninput="generateFancy(this.value)" value="Hello OmniUtil"></div>
+<div id="fancy-results" style="display:grid;gap:0.75rem;margin-top:1rem"></div>
+    </div>
+    <aside><div class="ad-unit ad-sidebar"><span class="ad-label">Advertisement</span>
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8836410103198896" data-ad-slot="3000000004" data-ad-format="auto"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div></aside>
+  </div></main>
+  <div id="search-modal-overlay" class="modal-overlay"><div class="search-modal">
+    <div class="search-input-wrapper"><span>🔍</span><input type="text" id="search-input" placeholder="Search utilities..."></div>
+    <div id="search-results" class="search-results"></div>
+  </div></div>
+  <footer class="app-footer"><div class="footer-bottom">&copy; 2026 OmniUtil.</div></footer>
+  <script src="../js/app.js"></script>
+  <script>const maps={
+  bold:{a:0x1D400,A:0x1D400,n:0x1D7CE},
+  italic:{a:0x1D44E,A:0x1D434},
+  boldItalic:{a:0x1D468,A:0x1D468},
+  script:{a:0x1D4B6,A:0x1D49C},
+  doubleStruck:{a:0x1D552,A:0x1D538},
+  fraktur:{a:0x1D586,A:0x1D56C},
+  monospace:{a:0x1D670,A:0x1D670},
+  upside:{a:'ɐqɔpəɟƃɥıɾʞlɯuodbɹsʇnʌʍxʎz',A:'∀ᗺƆᗡƎℲפHIſʞ˥WNOԀQɹS┴∩ΛMX⅄Z'},
+  bubble:{a:'ⓐⓑⓒⓓⓔⓕⓖⓗⓘⓙⓚⓛⓜⓝⓞⓟⓠⓡⓢⓣⓤⓥⓦⓧⓨⓩ',A:'ⒶⒷⒸⒹⒺⒻⒼⒽⒾⒿⓀⓁⓂⓃⓄⓅⓆⓇⓈⓉⓊⓋⓌⓍⓎⓏ'},
+  fullwidth:{},
+  strike:{},
+};
+const styles=[
+  {name:'Bold',fn:t=>mapUnicode(t,0x1D41A,0x1D400,0x1D7CE)},
+  {name:'Italic',fn:t=>mapUnicode(t,0x1D44E,0x1D434)},
+  {name:'Bold Italic',fn:t=>mapUnicode(t,0x1D482,0x1D468)},
+  {name:'Script',fn:t=>mapScript(t)},
+  {name:'Double-Struck',fn:t=>mapUnicode(t,0x1D552,0x1D538)},
+  {name:'Monospace',fn:t=>mapUnicode(t,0x1D68A,0x1D670)},
+  {name:'Upside Down',fn:t=>upsideDown(t)},
+  {name:'Bubble ⓐ',fn:t=>bubble(t)},
+  {name:'Full Width',fn:t=>fullWidth(t)},
+  {name:'Small Caps',fn:t=>smallCaps(t)},
+  {name:'Strikethrough',fn:t=>t.split('').join('\u0336')+'\u0336'},
+  {name:'Underline',fn:t=>t.split('').join('\u0332')+'\u0332'},
+  {name:'Superscript',fn:t=>superScript(t)},
+];
+function mapUnicode(t,la,ua,ld){return t.split('').map(c=>{if(c>='a'&&c<='z')return String.fromCodePoint(la+c.charCodeAt(0)-97);if(c>='A'&&c<='Z')return String.fromCodePoint(ua+c.charCodeAt(0)-65);if(ld&&c>='0'&&c<='9')return String.fromCodePoint(ld+c.charCodeAt(0)-48);return c;}).join('');}
+function mapScript(t){const sm='𝒶𝒷𝒸𝒹𝑒𝒻𝑔𝒽𝒾𝒿𝓀𝓁𝓂𝓃𝑜𝓅𝓆𝓇𝓈𝓉𝓊𝓋𝓌𝓍𝓎𝓏';const sM='𝒜𝐵𝒞𝒟𝐸𝐹𝒢𝐻𝐼𝒥𝒦𝐿𝑀𝒩𝒪𝒫𝒬𝑅𝒮𝒯𝒰𝒱𝒲𝒳𝒴𝒵';return t.split('').map(c=>{if(c>='a'&&c<='z')return[...sm][c.charCodeAt(0)-97];if(c>='A'&&c<='Z')return[...sM][c.charCodeAt(0)-65];return c;}).join('');}
+function upsideDown(t){const m='ɐqɔpǝɟƃɥıɾʞlɯuodbɹsʇnʌʍxʎz';return t.toLowerCase().split('').map(c=>{const i=c.charCodeAt(0)-97;return i>=0&&i<26?m[i]:c;}).reverse().join('');}
+function bubble(t){const la='ⓐⓑⓒⓓⓔⓕⓖⓗⓘⓙⓚⓛⓜⓝⓞⓟⓠⓡⓢⓣⓤⓥⓦⓧⓨⓩ'.split('');const ua='ⒶⒷⒸⒹⒺⒻⒼⒽⒾⒿⓀⓁⓂⓃⓄⓅⓆⓇⓈⓉⓊⓋⓌⓍⓎⓏ'.split('');return t.split('').map(c=>{if(c>='a'&&c<='z')return la[c.charCodeAt(0)-97];if(c>='A'&&c<='Z')return ua[c.charCodeAt(0)-65];return c;}).join('');}
+function fullWidth(t){return t.split('').map(c=>{const n=c.charCodeAt(0);return n>=33&&n<=126?String.fromCharCode(n+0xFF01-33):c;}).join('');}
+function smallCaps(t){const m='ᴀʙᴄᴅᴇꜰɢʜɪᴊᴋʟᴍɴᴏᴘǫʀꜱᴛᴜᴠᴡxʏᴢ';return t.split('').map(c=>{const i=c.toLowerCase().charCodeAt(0)-97;return c>='a'&&c<='z'?m[i]:c>='A'&&c<='Z'?m[c.charCodeAt(0)-65]:c;}).join('');}
+function superScript(t){const m={0:'⁰',1:'¹',2:'²',3:'³',4:'⁴',5:'⁵',6:'⁶',7:'⁷',8:'⁸',9:'⁹',a:'ᵃ',b:'ᵇ',c:'ᶜ',d:'ᵈ',e:'ᵉ',f:'ᶠ',g:'ᵍ',h:'ʰ',i:'ⁱ',j:'ʲ',k:'ᵏ',l:'ˡ',m:'ᵐ',n:'ⁿ',o:'ᵒ',p:'ᵖ',r:'ʳ',s:'ˢ',t:'ᵗ',u:'ᵘ',v:'ᵛ',w:'ʷ',x:'ˣ',y:'ʸ',z:'ᶻ'};return t.split('').map(c=>m[c.toLowerCase()]||c).join('');}
+function generateFancy(v){
+  const div=document.getElementById('fancy-results');
+  if(!v.trim()){div.innerHTML='';return;}
+  div.innerHTML=styles.map(s=>{
+    const r=s.fn(v);
+    return `<div style="display:flex;align-items:center;justify-content:space-between;background:var(--bg-secondary);border:1px solid var(--card-border);border-radius:var(--radius-sm);padding:0.75rem 1rem"><div><span style="font-size:0.7rem;color:var(--text-muted);display:block">${s.name}</span><span style="font-size:1.1rem">${r}</span></div><button class="btn btn-sm btn-secondary" onclick="copyToClipboard('${r.replace(/'/g,"\\'")}','Copied!')">Copy</button></div>`;
+  }).join('');
+}
+generateFancy('Hello OmniUtil');</script>
+</body></html>

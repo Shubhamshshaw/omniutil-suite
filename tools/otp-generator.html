@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>One-Time Password (OTP) & 2FA Simulator | OmniUtil</title>
+  <meta name="description" content="Generate numeric One-Time Passwords (4, 6, 8 digits) and simulate 30-second rotating TOTP codes.">
+  <link rel="canonical" href="https://shubhamshshaw.github.io/omniutil-suite/tools/otp-generator.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="One-Time Password (OTP) & 2FA Simulator | OmniUtil">
+  <meta property="og:description" content="Generate numeric One-Time Passwords (4, 6, 8 digits) and simulate 30-second rotating TOTP codes.">
+  <meta property="og:url" content="https://shubhamshshaw.github.io/omniutil-suite/tools/otp-generator.html">
+
+  <!-- Google AdSense Verification & Auto ads script -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8836410103198896" crossorigin="anonymous"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css">
+  
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-container">
+      <a href="../index.html" class="brand-logo"><div class="brand-icon">OU</div><span>OmniUtil</span></a>
+      <div class="nav-controls">
+        <button id="search-trigger" class="search-trigger"><span>🔍</span><span>Search tools...</span><span class="shortcut-badge">⌘K</span></button>
+        <button id="theme-toggle" class="btn-icon">☀️</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <div class="tool-layout">
+      <div class="tool-card">
+        <div class="tool-header">
+          <div class="tool-title-group">
+            <h1>🔢 One-Time Password (OTP) & 2FA Simulator</h1>
+            <p class="tool-description">Generate numeric One-Time Passwords (4, 6, 8 digits) and simulate 30-second rotating TOTP codes.</p>
+          </div>
+        </div>
+        
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:1.5rem;">
+          <div style="background:var(--bg-secondary);padding:1.5rem;border-radius:var(--radius-md);border:1px solid var(--card-border);text-align:center;">
+            <h4>Random Quick OTP</h4>
+            <div id="otp-display" style="font-size:3rem;font-weight:800;letter-spacing:6px;color:var(--accent-primary);margin:1.5rem 0;font-family:'Fira Code',monospace;">------</div>
+            <div style="display:flex;gap:0.5rem;justify-content:center;">
+              <button class="btn btn-primary" onclick="genOTP(6)">Generate 6 Digits</button>
+              <button class="btn btn-secondary" onclick="genOTP(4)">4 Digits</button>
+              <button class="btn btn-secondary" onclick="genOTP(8)">8 Digits</button>
+            </div>
+          </div>
+          <div style="background:var(--bg-secondary);padding:1.5rem;border-radius:var(--radius-md);border:1px solid var(--card-border);text-align:center;">
+            <h4>Live 30-Second TOTP Simulation</h4>
+            <div id="totp-display" style="font-size:3rem;font-weight:800;letter-spacing:6px;color:var(--success);margin:1.5rem 0;font-family:'Fira Code',monospace;">------</div>
+            <div style="color:var(--text-secondary);font-size:0.9rem;">Next refresh in <strong id="totp-seconds" style="color:var(--text-primary);">30</strong>s</div>
+          </div>
+        </div>
+        
+      </div>
+      <aside>
+        <div class="ad-unit ad-sidebar">
+          <span class="ad-label">Advertisement</span>
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8836410103198896" data-ad-slot="3000000065" data-ad-format="auto"></ins>
+          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <div id="search-modal-overlay" class="modal-overlay">
+    <div class="search-modal">
+      <div class="search-input-wrapper"><span>🔍</span><input type="text" id="search-input" placeholder="Search utilities..."></div>
+      <div id="search-results" class="search-results"></div>
+    </div>
+  </div>
+
+  <footer class="app-footer">
+    <div class="footer-bottom">&copy; 2026 OmniUtil. All rights reserved. Built for maximum speed, security, and responsive performance.</div>
+  </footer>
+
+  <script src="../js/app.js"></script>
+  <script src="../js/ads-config.js"></script>
+  <script>
+
+        function genOTP(len) {
+          const arr = new Uint8Array(len);
+          crypto.getRandomValues(arr);
+          const digits = Array.from(arr).map(b => b % 10).join('');
+          document.getElementById('otp-display').textContent = digits;
+        }
+        function updateTOTP() {
+          const sec = 30 - (Math.floor(Date.now() / 1000) % 30);
+          document.getElementById('totp-seconds').textContent = sec;
+          const seed = Math.floor(Date.now() / 30000);
+          const pseudo = Math.abs(Math.sin(seed) * 1000000);
+          const code = String(Math.floor(pseudo)).padStart(6, '0').slice(0, 6);
+          document.getElementById('totp-display').textContent = code;
+        }
+        genOTP(6);
+        setInterval(updateTOTP, 1000);
+        updateTOTP();
+        
+  </script>
+</body>
+</html>

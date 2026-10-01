@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://shubhamshshaw.github.io/omniutil-suite/sitemap.xml
+Sitemap: https://shubhamshshaw.github.io/sitemap.xml

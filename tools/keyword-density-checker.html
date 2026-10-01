@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Keyword Density & Frequency Analyzer | OmniUtil</title>
+  <meta name="description" content="Inspect word frequencies, density percentages, and SEO keyword prominence across content.">
+  <link rel="canonical" href="https://shubhamshshaw.github.io/omniutil-suite/tools/keyword-density-checker.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Keyword Density & Frequency Analyzer | OmniUtil">
+  <meta property="og:description" content="Inspect word frequencies, density percentages, and SEO keyword prominence across content.">
+  <meta property="og:url" content="https://shubhamshshaw.github.io/omniutil-suite/tools/keyword-density-checker.html">
+
+  <!-- Google AdSense Verification & Auto ads script -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8836410103198896" crossorigin="anonymous"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css">
+  
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-container">
+      <a href="../index.html" class="brand-logo"><div class="brand-icon">OU</div><span>OmniUtil</span></a>
+      <div class="nav-controls">
+        <button id="search-trigger" class="search-trigger"><span>🔍</span><span>Search tools...</span><span class="shortcut-badge">⌘K</span></button>
+        <button id="theme-toggle" class="btn-icon">☀️</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <div class="tool-layout">
+      <div class="tool-card">
+        <div class="tool-header">
+          <div class="tool-title-group">
+            <h1>🔍 Keyword Density & Frequency Analyzer</h1>
+            <p class="tool-description">Inspect word frequencies, density percentages, and SEO keyword prominence across content.</p>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Article Text</label>
+          <textarea id="kw-text" class="textarea-field" style="min-height:130px;" oninput="analyzeKeywords()">Online developer tools are essential for daily productivity. Free browser tools help programmers format code, compress media files, and calculate metrics.</textarea>
+        </div>
+        <div id="kw-table-container" style="background:var(--bg-secondary);border-radius:var(--radius-md);border:1px solid var(--card-border);overflow:hidden;margin-top:1.5rem;"></div>
+        
+      </div>
+      <aside>
+        <div class="ad-unit ad-sidebar">
+          <span class="ad-label">Advertisement</span>
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8836410103198896" data-ad-slot="3000000080" data-ad-format="auto"></ins>
+          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <div id="search-modal-overlay" class="modal-overlay">
+    <div class="search-modal">
+      <div class="search-input-wrapper"><span>🔍</span><input type="text" id="search-input" placeholder="Search utilities..."></div>
+      <div id="search-results" class="search-results"></div>
+    </div>
+  </div>
+
+  <footer class="app-footer">
+    <div class="footer-bottom">&copy; 2026 OmniUtil. All rights reserved. Built for maximum speed, security, and responsive performance.</div>
+  </footer>
+
+  <script src="../js/app.js"></script>
+  <script src="../js/ads-config.js"></script>
+  <script>
+
+        function analyzeKeywords() {
+          const txt = document.getElementById('kw-text').value.toLowerCase();
+          const words = txt.match(/\b[a-z]{3,}\b/g) || [];
+          const freq = {};
+          words.forEach(w => { freq[w] = (freq[w] || 0) + 1; });
+
+          const sorted = Object.entries(freq).sort((a,b) => b[1] - a[1]).slice(0, 8);
+          const total = words.length || 1;
+
+          let html = '<div style="display:grid;grid-template-columns:2fr 1fr 1fr;padding:12px 18px;background:var(--bg-tertiary);font-weight:700;"><span>Keyword</span><span>Occurrences</span><span>Density</span></div>';
+          sorted.forEach(([k, count]) => {
+            const pct = ((count / total) * 100).toFixed(1) + '%';
+            html += `<div style="display:grid;grid-template-columns:2fr 1fr 1fr;padding:10px 18px;border-top:1px solid var(--card-border);font-size:0.9rem;"><strong style="color:var(--accent-primary);">${k}</strong><span>${count}</span><span>${pct}</span></div>`;
+          });
+          document.getElementById('kw-table-container').innerHTML = html;
+        }
+        analyzeKeywords();
+        
+  </script>
+</body>
+</html>

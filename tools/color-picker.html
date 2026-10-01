@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Color Picker & Eyedropper | OmniUtil</title>
+  <meta name="description" content="Full-featured color selection tool with HEX, RGB, HSL, and HSV color conversions and palette saving.">
+  <link rel="canonical" href="https://shubhamshshaw.github.io/omniutil-suite/tools/color-picker.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Interactive Color Picker & Eyedropper | OmniUtil">
+  <meta property="og:description" content="Full-featured color selection tool with HEX, RGB, HSL, and HSV color conversions and palette saving.">
+  <meta property="og:url" content="https://shubhamshshaw.github.io/omniutil-suite/tools/color-picker.html">
+
+  <!-- Google AdSense Verification & Auto ads script -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8836410103198896" crossorigin="anonymous"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css">
+  
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-container">
+      <a href="../index.html" class="brand-logo"><div class="brand-icon">OU</div><span>OmniUtil</span></a>
+      <div class="nav-controls">
+        <button id="search-trigger" class="search-trigger"><span>🔍</span><span>Search tools...</span><span class="shortcut-badge">⌘K</span></button>
+        <button id="theme-toggle" class="btn-icon">☀️</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <div class="tool-layout">
+      <div class="tool-card">
+        <div class="tool-header">
+          <div class="tool-title-group">
+            <h1>💧 Interactive Color Picker & Eyedropper</h1>
+            <p class="tool-description">Full-featured color selection tool with HEX, RGB, HSL, and HSV color conversions and palette saving.</p>
+          </div>
+        </div>
+        
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:1.5rem;">
+          <div style="display:flex;flex-direction:column;align-items:center;background:var(--bg-secondary);padding:2rem;border-radius:var(--radius-md);border:1px solid var(--card-border);">
+            <input type="color" id="native-picker" value="#6366f1" style="width:120px;height:120px;border:none;border-radius:var(--radius-md);cursor:pointer;background:none;" oninput="updateColor(this.value)">
+            <p style="margin-top:1rem;color:var(--text-secondary);font-size:0.85rem;">Click color block to choose color</p>
+          </div>
+          <div style="display:grid;gap:0.75rem;">
+            <div class="form-group">
+              <label class="form-label">HEX</label>
+              <div style="display:flex;gap:0.5rem;">
+                <input type="text" id="cp-hex" class="input-field" style="font-family:'Fira Code',monospace;" readonly>
+                <button class="btn btn-sm btn-secondary" onclick="copyToClipboard(document.getElementById('cp-hex').value)">Copy</button>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">RGB</label>
+              <div style="display:flex;gap:0.5rem;">
+                <input type="text" id="cp-rgb" class="input-field" style="font-family:'Fira Code',monospace;" readonly>
+                <button class="btn btn-sm btn-secondary" onclick="copyToClipboard(document.getElementById('cp-rgb').value)">Copy</button>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">HSL</label>
+              <div style="display:flex;gap:0.5rem;">
+                <input type="text" id="cp-hsl" class="input-field" style="font-family:'Fira Code',monospace;" readonly>
+                <button class="btn btn-sm btn-secondary" onclick="copyToClipboard(document.getElementById('cp-hsl').value)">Copy</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+      <aside>
+        <div class="ad-unit ad-sidebar">
+          <span class="ad-label">Advertisement</span>
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8836410103198896" data-ad-slot="3000000035" data-ad-format="auto"></ins>
+          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <div id="search-modal-overlay" class="modal-overlay">
+    <div class="search-modal">
+      <div class="search-input-wrapper"><span>🔍</span><input type="text" id="search-input" placeholder="Search utilities..."></div>
+      <div id="search-results" class="search-results"></div>
+    </div>
+  </div>
+
+  <footer class="app-footer">
+    <div class="footer-bottom">&copy; 2026 OmniUtil. All rights reserved. Built for maximum speed, security, and responsive performance.</div>
+  </footer>
+
+  <script src="../js/app.js"></script>
+  <script src="../js/ads-config.js"></script>
+  <script>
+
+        function updateColor(hex) {
+          hex = hex.toUpperCase();
+          document.getElementById('cp-hex').value = hex;
+          const r = parseInt(hex.slice(1, 3), 16);
+          const g = parseInt(hex.slice(3, 5), 16);
+          const b = parseInt(hex.slice(5, 7), 16);
+          document.getElementById('cp-rgb').value = `rgb(${r}, ${g}, ${b})`;
+
+          let r_ = r / 255, g_ = g / 255, b_ = b / 255;
+          let max = Math.max(r_, g_, b_), min = Math.min(r_, g_, b_);
+          let h, s, l = (max + min) / 2;
+          if (max === min) h = s = 0;
+          else {
+            let d = max - min;
+            s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+            switch (max) {
+              case r_: h = (g_ - b_) / d + (g_ < b_ ? 6 : 0); break;
+              case g_: h = (b_ - r_) / d + 2; break;
+              case b_: h = (r_ - g_) / d + 4; break;
+            }
+            h /= 6;
+          }
+          document.getElementById('cp-hsl').value = `hsl(${Math.round(h*360)}, ${Math.round(s*100)}%, ${Math.round(l*100)}%)`;
+        }
+        updateColor('#6366F1');
+        
+  </script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Metadata & EXIF Inspector | OmniUtil</title>
+  <meta name="description" content="Inspect image file attributes, resolution, MIME format, color depth, and file size in your browser.">
+  <link rel="canonical" href="https://shubhamshshaw.github.io/omniutil-suite/tools/image-metadata-viewer.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Image Metadata & EXIF Inspector | OmniUtil">
+  <meta property="og:description" content="Inspect image file attributes, resolution, MIME format, color depth, and file size in your browser.">
+  <meta property="og:url" content="https://shubhamshshaw.github.io/omniutil-suite/tools/image-metadata-viewer.html">
+
+  <!-- Google AdSense Verification & Auto ads script -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8836410103198896" crossorigin="anonymous"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css">
+  
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-container">
+      <a href="../index.html" class="brand-logo"><div class="brand-icon">OU</div><span>OmniUtil</span></a>
+      <div class="nav-controls">
+        <button id="search-trigger" class="search-trigger"><span>🔍</span><span>Search tools...</span><span class="shortcut-badge">⌘K</span></button>
+        <button id="theme-toggle" class="btn-icon">☀️</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <div class="tool-layout">
+      <div class="tool-card">
+        <div class="tool-header">
+          <div class="tool-title-group">
+            <h1>ℹ️ Image Metadata & EXIF Inspector</h1>
+            <p class="tool-description">Inspect image file attributes, resolution, MIME format, color depth, and file size in your browser.</p>
+          </div>
+        </div>
+        
+        <div id="drop-zone" class="drop-zone" onclick="document.getElementById('meta-file').click()">
+          <div class="drop-zone-icon">📋</div>
+          <h3>Select or Drop Image to Inspect Metadata</h3>
+          <input type="file" id="meta-file" accept="image/*" style="display:none;" onchange="inspectMeta(this.files[0])">
+        </div>
+        <div id="meta-details" style="display:none;margin-top:1.5rem;">
+          <div id="meta-table" style="background:var(--bg-secondary);border-radius:var(--radius-md);border:1px solid var(--card-border);overflow:hidden;"></div>
+        </div>
+        
+      </div>
+      <aside>
+        <div class="ad-unit ad-sidebar">
+          <span class="ad-label">Advertisement</span>
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8836410103198896" data-ad-slot="3000000057" data-ad-format="auto"></ins>
+          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <div id="search-modal-overlay" class="modal-overlay">
+    <div class="search-modal">
+      <div class="search-input-wrapper"><span>🔍</span><input type="text" id="search-input" placeholder="Search utilities..."></div>
+      <div id="search-results" class="search-results"></div>
+    </div>
+  </div>
+
+  <footer class="app-footer">
+    <div class="footer-bottom">&copy; 2026 OmniUtil. All rights reserved. Built for maximum speed, security, and responsive performance.</div>
+  </footer>
+
+  <script src="../js/app.js"></script>
+  <script src="../js/ads-config.js"></script>
+  <script>
+
+        function inspectMeta(file) {
+          if (!file) return;
+          const r = new FileReader();
+          r.onload = e => {
+            const img = new Image();
+            img.onload = () => {
+              const rows = [
+                ['File Name', file.name],
+                ['File Size', (file.size / 1024).toFixed(2) + ' KB (' + file.size.toLocaleString() + ' bytes)'],
+                ['MIME Type', file.type || 'image/unknown'],
+                ['Pixel Dimensions', `${img.width} × ${img.height} px`],
+                ['Aspect Ratio', (img.width / img.height).toFixed(2) + ':1'],
+                ['Last Modified', new Date(file.lastModified).toLocaleString()]
+              ];
+              const table = document.getElementById('meta-table');
+              table.innerHTML = rows.map(([k, v]) => `
+                <div style="display:flex;justify-content:space-between;padding:12px 18px;border-bottom:1px solid var(--card-border);font-size:0.9rem;">
+                  <strong style="color:var(--text-secondary);">${k}</strong>
+                  <span style="font-family:'Fira Code',monospace;">${v}</span>
+                </div>
+              `).join('');
+              document.getElementById('meta-details').style.display = 'block';
+            };
+            img.src = e.target.result;
+          };
+          r.readAsDataURL(file);
+        }
+        
+  </script>
+</body>
+</html>

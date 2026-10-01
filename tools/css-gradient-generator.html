@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Gradient Generator | OmniUtil</title>
+  <meta name="description" content="Build CSS linear, radial, and conic gradients with live preview, color stop controls, angle sliders, and CSS export.">
+  <link rel="canonical" href="https://shubhamshshaw.github.io/omniutil-suite/tools/css-gradient-generator.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="CSS Gradient Generator | OmniUtil">
+  <meta property="og:description" content="Build CSS linear, radial, and conic gradients with live preview, color stop controls, angle sliders, and CSS export.">
+  <meta property="og:url" content="https://shubhamshshaw.github.io/omniutil-suite/tools/css-gradient-generator.html">
+
+  <!-- Google AdSense Verification & Auto ads script -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8836410103198896" crossorigin="anonymous"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css">
+  
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-container">
+      <a href="../index.html" class="brand-logo"><div class="brand-icon">OU</div><span>OmniUtil</span></a>
+      <div class="nav-controls">
+        <button id="search-trigger" class="search-trigger"><span>🔍</span><span>Search tools...</span><span class="shortcut-badge">⌘K</span></button>
+        <button id="theme-toggle" class="btn-icon">☀️</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <div class="tool-layout">
+      <div class="tool-card">
+        <div class="tool-header">
+          <div class="tool-title-group">
+            <h1>🌈 CSS Gradient Generator</h1>
+            <p class="tool-description">Build CSS linear, radial, and conic gradients with live preview, color stop controls, angle sliders, and CSS export.</p>
+          </div>
+        </div>
+        
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:1.5rem;">
+          <div>
+            <div class="form-group">
+              <label class="form-label">Gradient Type</label>
+              <select id="grad-type" class="select-field" onchange="renderGradient()">
+                <option value="linear">Linear Gradient</option>
+                <option value="radial">Radial Gradient</option>
+                <option value="conic">Conic Gradient</option>
+              </select>
+            </div>
+            <div class="form-group" id="angle-group">
+              <label class="form-label">Angle: <span id="angle-val">135°</span></label>
+              <input type="range" id="grad-angle" min="0" max="360" value="135" class="input-field" oninput="document.getElementById('angle-val').textContent=this.value+'°';renderGradient();">
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+              <div class="form-group">
+                <label class="form-label">Color 1</label>
+                <input type="color" id="grad-c1" value="#6366f1" class="input-field" style="height:44px;padding:4px;" oninput="renderGradient()">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Color 2</label>
+                <input type="color" id="grad-c2" value="#ec4899" class="input-field" style="height:44px;padding:4px;" oninput="renderGradient()">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Optional Color 3</label>
+              <input type="color" id="grad-c3" value="#8b5cf6" class="input-field" style="height:44px;padding:4px;" oninput="renderGradient()">
+            </div>
+          </div>
+          <div>
+            <label class="form-label">Live Preview</label>
+            <div id="grad-preview" style="height:220px;border-radius:var(--radius-md);border:1px solid var(--card-border);box-shadow:var(--shadow-lg);"></div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.5rem;">
+            <label class="form-label">Generated CSS Code</label>
+            <button class="btn btn-sm btn-primary" onclick="copyCSS()">Copy CSS</button>
+          </div>
+          <textarea id="grad-code" class="textarea-field" style="font-family:'Fira Code',monospace;min-height:80px;" readonly></textarea>
+        </div>
+        
+      </div>
+      <aside>
+        <div class="ad-unit ad-sidebar">
+          <span class="ad-label">Advertisement</span>
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8836410103198896" data-ad-slot="3000000031" data-ad-format="auto"></ins>
+          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <div id="search-modal-overlay" class="modal-overlay">
+    <div class="search-modal">
+      <div class="search-input-wrapper"><span>🔍</span><input type="text" id="search-input" placeholder="Search utilities..."></div>
+      <div id="search-results" class="search-results"></div>
+    </div>
+  </div>
+
+  <footer class="app-footer">
+    <div class="footer-bottom">&copy; 2026 OmniUtil. All rights reserved. Built for maximum speed, security, and responsive performance.</div>
+  </footer>
+
+  <script src="../js/app.js"></script>
+  <script src="../js/ads-config.js"></script>
+  <script>
+
+        function renderGradient() {
+          const type = document.getElementById('grad-type').value;
+          const angle = document.getElementById('grad-angle').value;
+          const c1 = document.getElementById('grad-c1').value;
+          const c2 = document.getElementById('grad-c2').value;
+          const c3 = document.getElementById('grad-c3').value;
+          document.getElementById('angle-group').style.display = type === 'radial' ? 'none' : 'block';
+
+          let css = '';
+          if (type === 'linear') css = `linear-gradient(${angle}deg, ${c1} 0%, ${c3} 50%, ${c2} 100%)`;
+          else if (type === 'radial') css = `radial-gradient(circle at center, ${c1} 0%, ${c3} 50%, ${c2} 100%)`;
+          else if (type === 'conic') css = `conic-gradient(from ${angle}deg, ${c1}, ${c3}, ${c2}, ${c1})`;
+
+          document.getElementById('grad-preview').style.background = css;
+          document.getElementById('grad-code').value = `background: ${css};`;
+        }
+        function copyCSS() {
+          const val = document.getElementById('grad-code').value;
+          if (val) copyToClipboard(val, 'Gradient CSS copied!');
+        }
+        renderGradient();
+        
+  </script>
+</body>
+</html>

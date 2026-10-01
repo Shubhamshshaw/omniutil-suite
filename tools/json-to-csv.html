@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JSON to CSV Converter | OmniUtil</title>
+  <meta name="description" content="Convert JSON arrays and objects to formatted CSV files with automatic header extraction and instant download.">
+  <link rel="canonical" href="https://shubhamshshaw.github.io/omniutil-suite/tools/json-to-csv.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="JSON to CSV Converter | OmniUtil">
+  <meta property="og:description" content="Convert JSON arrays and objects to formatted CSV files with automatic header extraction and instant download.">
+  <meta property="og:url" content="https://shubhamshshaw.github.io/omniutil-suite/tools/json-to-csv.html">
+
+  <!-- Google AdSense Verification & Auto ads script -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8836410103198896" crossorigin="anonymous"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css">
+  
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-container">
+      <a href="../index.html" class="brand-logo"><div class="brand-icon">OU</div><span>OmniUtil</span></a>
+      <div class="nav-controls">
+        <button id="search-trigger" class="search-trigger"><span>🔍</span><span>Search tools...</span><span class="shortcut-badge">⌘K</span></button>
+        <button id="theme-toggle" class="btn-icon">☀️</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <div class="tool-layout">
+      <div class="tool-card">
+        <div class="tool-header">
+          <div class="tool-title-group">
+            <h1>📊 JSON to CSV Converter</h1>
+            <p class="tool-description">Convert JSON arrays and objects to formatted CSV files with automatic header extraction and instant download.</p>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Input JSON Array</label>
+          <textarea id="json-input" class="textarea-field" style="min-height:160px;font-family:'Fira Code',monospace;" placeholder='[\n  {"id": 1, "name": "John Doe", "email": "john@example.com"},\n  {"id": 2, "name": "Jane Smith", "email": "jane@example.com"}\n]'></textarea>
+        </div>
+        <div style="display:flex;gap:0.75rem;margin:1rem 0;flex-wrap:wrap;">
+          <button class="btn btn-primary" onclick="convertJSONtoCSV()">Convert to CSV</button>
+          <button class="btn btn-secondary" onclick="downloadCSV()">Download .csv</button>
+          <button class="btn btn-secondary" onclick="loadSampleJSON()">Load Sample</button>
+          <button class="btn btn-secondary" onclick="copyCSV()">Copy CSV</button>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Generated CSV</label>
+          <textarea id="csv-output" class="textarea-field" style="min-height:160px;font-family:'Fira Code',monospace;" readonly></textarea>
+        </div>
+        
+      </div>
+      <aside>
+        <div class="ad-unit ad-sidebar">
+          <span class="ad-label">Advertisement</span>
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8836410103198896" data-ad-slot="3000000020" data-ad-format="auto"></ins>
+          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <div id="search-modal-overlay" class="modal-overlay">
+    <div class="search-modal">
+      <div class="search-input-wrapper"><span>🔍</span><input type="text" id="search-input" placeholder="Search utilities..."></div>
+      <div id="search-results" class="search-results"></div>
+    </div>
+  </div>
+
+  <footer class="app-footer">
+    <div class="footer-bottom">&copy; 2026 OmniUtil. All rights reserved. Built for maximum speed, security, and responsive performance.</div>
+  </footer>
+
+  <script src="../js/app.js"></script>
+  <script src="../js/ads-config.js"></script>
+  <script>
+
+        function convertJSONtoCSV() {
+          const raw = document.getElementById('json-input').value.trim();
+          if (!raw) return;
+          try {
+            const data = JSON.parse(raw);
+            const arr = Array.isArray(data) ? data : [data];
+            if (arr.length === 0) return;
+            const headers = Array.from(new Set(arr.flatMap(Object.keys)));
+            const rows = arr.map(obj => headers.map(h => {
+              let val = obj[h] === undefined || obj[h] === null ? '' : obj[h];
+              if (typeof val === 'object') val = JSON.stringify(val);
+              val = String(val).replace(/"/g, '""');
+              return `"${val}"`;
+            }).join(','));
+            const csv = headers.map(h => `"${h}"`).join(',') + '\n' + rows.join('\n');
+            document.getElementById('csv-output').value = csv;
+          } catch(err) {
+            showToast('Invalid JSON: ' + err.message, 'error');
+          }
+        }
+        function downloadCSV() {
+          const csv = document.getElementById('csv-output').value;
+          if (!csv) return;
+          const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = 'converted.csv';
+          a.click();
+          URL.revokeObjectURL(url);
+          showToast('Downloaded converted.csv', 'success');
+        }
+        function copyCSV() {
+          const val = document.getElementById('csv-output').value;
+          if (val) copyToClipboard(val, 'CSV copied to clipboard!');
+        }
+        function loadSampleJSON() {
+          const sample = [
+            { "id": 1, "name": "Alice Johnson", "role": "Engineer", "active": true },
+            { "id": 2, "name": "Bob Miller", "role": "Designer", "active": true },
+            { "id": 3, "name": "Charlie Davis", "role": "Product Manager", "active": false }
+          ];
+          document.getElementById('json-input').value = JSON.stringify(sample, null, 2);
+          convertJSONtoCSV();
+        }
+        
+  </script>
+</body>
+</html>

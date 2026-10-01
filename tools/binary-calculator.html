@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Binary / Hex / Octal Converter | OmniUtil</title>
+  <meta name="description" content="Convert numerical values instantly between Binary (base 2), Octal (base 8), Decimal (base 10), and Hexadecimal (base 16).">
+  <link rel="canonical" href="https://shubhamshshaw.github.io/omniutil-suite/tools/binary-calculator.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Binary / Hex / Octal Converter | OmniUtil">
+  <meta property="og:description" content="Convert numerical values instantly between Binary (base 2), Octal (base 8), Decimal (base 10), and Hexadecimal (base 16).">
+  <meta property="og:url" content="https://shubhamshshaw.github.io/omniutil-suite/tools/binary-calculator.html">
+
+  <!-- Google AdSense Verification & Auto ads script -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8836410103198896" crossorigin="anonymous"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css">
+  
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-container">
+      <a href="../index.html" class="brand-logo"><div class="brand-icon">OU</div><span>OmniUtil</span></a>
+      <div class="nav-controls">
+        <button id="search-trigger" class="search-trigger"><span>🔍</span><span>Search tools...</span><span class="shortcut-badge">⌘K</span></button>
+        <button id="theme-toggle" class="btn-icon">☀️</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <div class="tool-layout">
+      <div class="tool-card">
+        <div class="tool-header">
+          <div class="tool-title-group">
+            <h1>🧮 Binary / Hex / Octal Converter</h1>
+            <p class="tool-description">Convert numerical values instantly between Binary (base 2), Octal (base 8), Decimal (base 10), and Hexadecimal (base 16).</p>
+          </div>
+        </div>
+        
+        <div style="display:grid;gap:1.25rem;">
+          <div class="form-group">
+            <label class="form-label">Decimal (Base 10)</label>
+            <input type="number" id="base-dec" class="input-field" value="255" oninput="convertFrom('dec')">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Binary (Base 2)</label>
+            <input type="text" id="base-bin" class="input-field" style="font-family:'Fira Code',monospace;" oninput="convertFrom('bin')">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Hexadecimal (Base 16)</label>
+            <input type="text" id="base-hex" class="input-field" style="font-family:'Fira Code',monospace;" oninput="convertFrom('hex')">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Octal (Base 8)</label>
+            <input type="text" id="base-oct" class="input-field" style="font-family:'Fira Code',monospace;" oninput="convertFrom('oct')">
+          </div>
+        </div>
+        
+      </div>
+      <aside>
+        <div class="ad-unit ad-sidebar">
+          <span class="ad-label">Advertisement</span>
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8836410103198896" data-ad-slot="3000000050" data-ad-format="auto"></ins>
+          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <div id="search-modal-overlay" class="modal-overlay">
+    <div class="search-modal">
+      <div class="search-input-wrapper"><span>🔍</span><input type="text" id="search-input" placeholder="Search utilities..."></div>
+      <div id="search-results" class="search-results"></div>
+    </div>
+  </div>
+
+  <footer class="app-footer">
+    <div class="footer-bottom">&copy; 2026 OmniUtil. All rights reserved. Built for maximum speed, security, and responsive performance.</div>
+  </footer>
+
+  <script src="../js/app.js"></script>
+  <script src="../js/ads-config.js"></script>
+  <script>
+
+        function convertFrom(type) {
+          let dec = 0;
+          if (type === 'dec') dec = parseInt(document.getElementById('base-dec').value, 10);
+          else if (type === 'bin') dec = parseInt(document.getElementById('base-bin').value, 2);
+          else if (type === 'hex') dec = parseInt(document.getElementById('base-hex').value, 16);
+          else if (type === 'oct') dec = parseInt(document.getElementById('base-oct').value, 8);
+
+          if (isNaN(dec)) return;
+
+          if (type !== 'dec') document.getElementById('base-dec').value = dec;
+          if (type !== 'bin') document.getElementById('base-bin').value = dec.toString(2);
+          if (type !== 'hex') document.getElementById('base-hex').value = dec.toString(16).toUpperCase();
+          if (type !== 'oct') document.getElementById('base-oct').value = dec.toString(8);
+        }
+        convertFrom('dec');
+        
+  </script>
+</body>
+</html>

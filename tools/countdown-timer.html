@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event Countdown Timer | OmniUtil</title>
+  <meta name="description" content="Create live visual countdowns to weddings, product launches, birthdays, exams, and milestones.">
+  <link rel="canonical" href="https://shubhamshshaw.github.io/omniutil-suite/tools/countdown-timer.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Event Countdown Timer | OmniUtil">
+  <meta property="og:description" content="Create live visual countdowns to weddings, product launches, birthdays, exams, and milestones.">
+  <meta property="og:url" content="https://shubhamshshaw.github.io/omniutil-suite/tools/countdown-timer.html">
+
+  <!-- Google AdSense Verification & Auto ads script -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8836410103198896" crossorigin="anonymous"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css">
+  
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-container">
+      <a href="../index.html" class="brand-logo"><div class="brand-icon">OU</div><span>OmniUtil</span></a>
+      <div class="nav-controls">
+        <button id="search-trigger" class="search-trigger"><span>🔍</span><span>Search tools...</span><span class="shortcut-badge">⌘K</span></button>
+        <button id="theme-toggle" class="btn-icon">☀️</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <div class="tool-layout">
+      <div class="tool-card">
+        <div class="tool-header">
+          <div class="tool-title-group">
+            <h1>⏳ Event Countdown Timer</h1>
+            <p class="tool-description">Create live visual countdowns to weddings, product launches, birthdays, exams, and milestones.</p>
+          </div>
+        </div>
+        
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:1.5rem;">
+          <div class="form-group">
+            <label class="form-label">Event Name</label>
+            <input type="text" id="cd-title" class="input-field" value="Hackathon Submission Deadline">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Target Date & Time</label>
+            <input type="datetime-local" id="cd-target" class="input-field">
+          </div>
+        </div>
+        <div style="background:var(--bg-secondary);padding:2rem;border-radius:var(--radius-md);border:1px solid var(--card-border);text-align:center;">
+          <h3 id="cd-heading" style="color:var(--accent-primary);margin-bottom:1.5rem;">Countdown</h3>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;max-width:500px;margin:0 auto;">
+            <div><strong id="cd-d" style="font-size:2.5rem;color:var(--text-primary);display:block;">00</strong>Days</div>
+            <div><strong id="cd-h" style="font-size:2.5rem;color:var(--text-primary);display:block;">00</strong>Hours</div>
+            <div><strong id="cd-m" style="font-size:2.5rem;color:var(--text-primary);display:block;">00</strong>Mins</div>
+            <div><strong id="cd-s" style="font-size:2.5rem;color:var(--accent-primary);display:block;">00</strong>Secs</div>
+          </div>
+        </div>
+        
+      </div>
+      <aside>
+        <div class="ad-unit ad-sidebar">
+          <span class="ad-label">Advertisement</span>
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8836410103198896" data-ad-slot="3000000072" data-ad-format="auto"></ins>
+          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <div id="search-modal-overlay" class="modal-overlay">
+    <div class="search-modal">
+      <div class="search-input-wrapper"><span>🔍</span><input type="text" id="search-input" placeholder="Search utilities..."></div>
+      <div id="search-results" class="search-results"></div>
+    </div>
+  </div>
+
+  <footer class="app-footer">
+    <div class="footer-bottom">&copy; 2026 OmniUtil. All rights reserved. Built for maximum speed, security, and responsive performance.</div>
+  </footer>
+
+  <script src="../js/app.js"></script>
+  <script src="../js/ads-config.js"></script>
+  <script>
+
+        const target = new Date(Date.now() + 7 * 24 * 3600 * 1000);
+        document.getElementById('cd-target').value = target.toISOString().slice(0, 16);
+
+        function updateCountdown() {
+          document.getElementById('cd-heading').textContent = document.getElementById('cd-title').value;
+          const tgt = new Date(document.getElementById('cd-target').value).getTime();
+          const diff = Math.max(0, tgt - Date.now());
+
+          const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+          const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+          const m = Math.floor((diff / (1000 * 60)) % 60);
+          const s = Math.floor((diff / 1000) % 60);
+
+          document.getElementById('cd-d').textContent = String(d).padStart(2, '0');
+          document.getElementById('cd-h').textContent = String(h).padStart(2, '0');
+          document.getElementById('cd-m').textContent = String(m).padStart(2, '0');
+          document.getElementById('cd-s').textContent = String(s).padStart(2, '0');
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+        
+  </script>
+</body>
+</html>

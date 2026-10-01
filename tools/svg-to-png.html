@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SVG to PNG Converter | OmniUtil</title>
+  <meta name="description" content="Convert vector SVG graphics or raw SVG markup into high-definition raster PNG files with transparent backgrounds.">
+  <link rel="canonical" href="https://shubhamshshaw.github.io/omniutil-suite/tools/svg-to-png.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="SVG to PNG Converter | OmniUtil">
+  <meta property="og:description" content="Convert vector SVG graphics or raw SVG markup into high-definition raster PNG files with transparent backgrounds.">
+  <meta property="og:url" content="https://shubhamshshaw.github.io/omniutil-suite/tools/svg-to-png.html">
+
+  <!-- Google AdSense Verification & Auto ads script -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8836410103198896" crossorigin="anonymous"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css">
+  
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-container">
+      <a href="../index.html" class="brand-logo"><div class="brand-icon">OU</div><span>OmniUtil</span></a>
+      <div class="nav-controls">
+        <button id="search-trigger" class="search-trigger"><span>🔍</span><span>Search tools...</span><span class="shortcut-badge">⌘K</span></button>
+        <button id="theme-toggle" class="btn-icon">☀️</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <div class="tool-layout">
+      <div class="tool-card">
+        <div class="tool-header">
+          <div class="tool-title-group">
+            <h1>🔄 SVG to PNG Converter</h1>
+            <p class="tool-description">Convert vector SVG graphics or raw SVG markup into high-definition raster PNG files with transparent backgrounds.</p>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Paste Raw SVG Code or Upload File</label>
+          <textarea id="svg-input" class="textarea-field" style="min-height:140px;font-family:'Fira Code',monospace;" placeholder="<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>...</svg>"></textarea>
+        </div>
+        <div style="display:flex;gap:0.75rem;margin:1rem 0;flex-wrap:wrap;align-items:center;">
+          <input type="file" id="svg-file" accept=".svg" onchange="readSVGFile(this.files[0])" class="input-field" style="max-width:240px;">
+          <button class="btn btn-primary" onclick="convertSVGToPNG()">Convert to PNG</button>
+          <button class="btn btn-secondary" onclick="downloadPNG()">Download PNG</button>
+        </div>
+        <div style="background:var(--bg-secondary);padding:1.5rem;border-radius:var(--radius-md);text-align:center;">
+          <canvas id="svg-canvas" style="background:transparent;max-width:100%;max-height:300px;border-radius:8px;"></canvas>
+        </div>
+        
+      </div>
+      <aside>
+        <div class="ad-unit ad-sidebar">
+          <span class="ad-label">Advertisement</span>
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8836410103198896" data-ad-slot="3000000055" data-ad-format="auto"></ins>
+          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <div id="search-modal-overlay" class="modal-overlay">
+    <div class="search-modal">
+      <div class="search-input-wrapper"><span>🔍</span><input type="text" id="search-input" placeholder="Search utilities..."></div>
+      <div id="search-results" class="search-results"></div>
+    </div>
+  </div>
+
+  <footer class="app-footer">
+    <div class="footer-bottom">&copy; 2026 OmniUtil. All rights reserved. Built for maximum speed, security, and responsive performance.</div>
+  </footer>
+
+  <script src="../js/app.js"></script>
+  <script src="../js/ads-config.js"></script>
+  <script>
+
+        function readSVGFile(file) {
+          if (!file) return;
+          const r = new FileReader();
+          r.onload = e => {
+            document.getElementById('svg-input').value = e.target.result;
+            convertSVGToPNG();
+          };
+          r.readAsText(file);
+        }
+        function convertSVGToPNG() {
+          const svgCode = document.getElementById('svg-input').value.trim();
+          if (!svgCode) return;
+          const blob = new Blob([svgCode], { type: 'image/svg+xml;charset=utf-8' });
+          const url = URL.createObjectURL(blob);
+          const img = new Image();
+          img.onload = () => {
+            const canvas = document.getElementById('svg-canvas');
+            canvas.width = img.width || 400;
+            canvas.height = img.height || 400;
+            const ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(img, 0, 0);
+            URL.revokeObjectURL(url);
+            showToast('SVG rendered to PNG canvas', 'success');
+          };
+          img.src = url;
+        }
+        function downloadPNG() {
+          const canvas = document.getElementById('svg-canvas');
+          const a = document.createElement('a');
+          a.download = 'vector-converted.png';
+          a.href = canvas.toDataURL('image/png');
+          a.click();
+          showToast('Downloaded PNG file', 'success');
+        }
+        
+  </script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Percentage Calculator | OmniUtil</title>
+  <meta name="description" content="Calculate percentages, fraction equivalents, percentage increases, decreases, and differences.">
+  <link rel="canonical" href="https://shubhamshshaw.github.io/omniutil-suite/tools/percentage-calculator.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Percentage Calculator | OmniUtil">
+  <meta property="og:description" content="Calculate percentages, fraction equivalents, percentage increases, decreases, and differences.">
+  <meta property="og:url" content="https://shubhamshshaw.github.io/omniutil-suite/tools/percentage-calculator.html">
+
+  <!-- Google AdSense Verification & Auto ads script -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8836410103198896" crossorigin="anonymous"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css">
+  
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-container">
+      <a href="../index.html" class="brand-logo"><div class="brand-icon">OU</div><span>OmniUtil</span></a>
+      <div class="nav-controls">
+        <button id="search-trigger" class="search-trigger"><span>🔍</span><span>Search tools...</span><span class="shortcut-badge">⌘K</span></button>
+        <button id="theme-toggle" class="btn-icon">☀️</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <div class="tool-layout">
+      <div class="tool-card">
+        <div class="tool-header">
+          <div class="tool-title-group">
+            <h1>% Percentage Calculator</h1>
+            <p class="tool-description">Calculate percentages, fraction equivalents, percentage increases, decreases, and differences.</p>
+          </div>
+        </div>
+        
+        <div style="display:grid;gap:1.5rem;">
+          <div style="background:var(--bg-secondary);padding:1.25rem;border-radius:var(--radius-md);border:1px solid var(--card-border);">
+            <h4>What is P% of X?</h4>
+            <div style="display:flex;gap:0.75rem;align-items:center;margin-top:0.75rem;flex-wrap:wrap;">
+              <span>What is</span>
+              <input type="number" id="p1-rate" class="input-field" style="width:100px;" value="15">
+              <span>% of</span>
+              <input type="number" id="p1-val" class="input-field" style="width:120px;" value="200">
+              <button class="btn btn-primary" onclick="calcP1()">Calculate</button>
+              <span>=</span>
+              <strong id="p1-res" style="color:var(--accent-primary);font-size:1.25rem;">30</strong>
+            </div>
+          </div>
+
+          <div style="background:var(--bg-secondary);padding:1.25rem;border-radius:var(--radius-md);border:1px solid var(--card-border);">
+            <h4>X is what percent of Y?</h4>
+            <div style="display:flex;gap:0.75rem;align-items:center;margin-top:0.75rem;flex-wrap:wrap;">
+              <input type="number" id="p2-val" class="input-field" style="width:100px;" value="50">
+              <span>is what % of</span>
+              <input type="number" id="p2-total" class="input-field" style="width:120px;" value="250">
+              <button class="btn btn-primary" onclick="calcP2()">Calculate</button>
+              <span>=</span>
+              <strong id="p2-res" style="color:var(--accent-primary);font-size:1.25rem;">20%</strong>
+            </div>
+          </div>
+
+          <div style="background:var(--bg-secondary);padding:1.25rem;border-radius:var(--radius-md);border:1px solid var(--card-border);">
+            <h4>Percentage Increase / Decrease from X to Y</h4>
+            <div style="display:flex;gap:0.75rem;align-items:center;margin-top:0.75rem;flex-wrap:wrap;">
+              <span>From</span>
+              <input type="number" id="p3-from" class="input-field" style="width:100px;" value="100">
+              <span>to</span>
+              <input type="number" id="p3-to" class="input-field" style="width:120px;" value="150">
+              <button class="btn btn-primary" onclick="calcP3()">Calculate</button>
+              <span>=</span>
+              <strong id="p3-res" style="color:var(--accent-primary);font-size:1.25rem;">+50%</strong>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+      <aside>
+        <div class="ad-unit ad-sidebar">
+          <span class="ad-label">Advertisement</span>
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8836410103198896" data-ad-slot="3000000042" data-ad-format="auto"></ins>
+          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <div id="search-modal-overlay" class="modal-overlay">
+    <div class="search-modal">
+      <div class="search-input-wrapper"><span>🔍</span><input type="text" id="search-input" placeholder="Search utilities..."></div>
+      <div id="search-results" class="search-results"></div>
+    </div>
+  </div>
+
+  <footer class="app-footer">
+    <div class="footer-bottom">&copy; 2026 OmniUtil. All rights reserved. Built for maximum speed, security, and responsive performance.</div>
+  </footer>
+
+  <script src="../js/app.js"></script>
+  <script src="../js/ads-config.js"></script>
+  <script>
+
+        function calcP1() {
+          const r = parseFloat(document.getElementById('p1-rate').value) || 0;
+          const v = parseFloat(document.getElementById('p1-val').value) || 0;
+          document.getElementById('p1-res').textContent = ((r / 100) * v).toFixed(2);
+        }
+        function calcP2() {
+          const v = parseFloat(document.getElementById('p2-val').value) || 0;
+          const t = parseFloat(document.getElementById('p2-total').value) || 1;
+          document.getElementById('p2-res').textContent = ((v / t) * 100).toFixed(2) + '%';
+        }
+        function calcP3() {
+          const from = parseFloat(document.getElementById('p3-from').value) || 0;
+          const to = parseFloat(document.getElementById('p3-to').value) || 0;
+          const diff = to - from;
+          const pct = ((diff / from) * 100).toFixed(2);
+          document.getElementById('p3-res').textContent = (diff >= 0 ? '+' : '') + pct + '%';
+        }
+        
+  </script>
+</body>
+</html>

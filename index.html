@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>OmniUtil - 14-in-1 Free Online Utility Suite & Browser Tools</title>
-  <meta name="description" content="Access 14 privacy-first online tools: File Size Compressor, Image Converter, Word Counter, QR Code Generator, Password Generator, Age Calculator, Case Converter, JSON Formatter, Color Converter, Base64 Encoder, Stopwatch, Markdown Converter, Unit Converter & Image to Code.">
-  <meta name="keywords" content="browser tools, online utilities, word counter, qr generator, password generator, file compressor, image converter, json formatter, color converter, age calculator, base64 encoder">
-  <link rel="canonical" href="https://shubhamshshaw.github.io/fifa-stadium-companion/">
+  <title>OmniUtil - 100-in-1 Free Online Utility Suite & Browser Tools</title>
+  <meta name="description" content="Access 100 privacy-first online tools: File Compressor, Image Tools, Word Counter, QR Generator, Password Tools, Calculators, Formatters, Converters & Developer Utilities.">
+  <meta name="keywords" content="100 tools, browser tools, online utilities, word counter, qr generator, password generator, file compressor, image converter, json formatter, color converter, age calculator, base64 encoder">
+  <link rel="canonical" href="https://shubhamshshaw.github.io/omniutil-suite/">
 
   <!-- Open Graph / Social Tags -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="OmniUtil - 14-in-1 Free Online Utility Suite & Browser Tools">
-  <meta property="og:description" content="Instant, privacy-first browser tools for developers, designers, and daily tasks. No ads or signups needed.">
-  <meta property="og:url" content="https://shubhamshshaw.github.io/fifa-stadium-companion/">
-  <meta property="og:image" content="https://shubhamshshaw.github.io/fifa-stadium-companion/assets/og-image.png">
+  <meta property="og:title" content="OmniUtil - 100-in-1 Free Online Utility Suite">
+  <meta property="og:description" content="Instant, privacy-first browser tools for developers, designers, and creators. All computations run 100% locally in your browser.">
+  <meta property="og:url" content="https://shubhamshshaw.github.io/omniutil-suite/">
+  <meta property="og:image" content="https://shubhamshshaw.github.io/omniutil-suite/assets/og-image.png">
 
-  <!-- Google AdSense Monetization Script -->
+  <!-- Google AdSense Verification & Auto ads script -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8836410103198896" crossorigin="anonymous"></script>
 
   <!-- Google Fonts & Stylesheet -->
@@ -30,8 +30,8 @@
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "OmniUtil Web Suite",
-    "url": "https://shubhamshshaw.github.io/fifa-stadium-companion/",
-    "description": "Comprehensive suite of 14 interactive browser utilities.",
+    "url": "https://shubhamshshaw.github.io/omniutil-suite/",
+    "description": "Comprehensive suite of 100 interactive browser utilities for developers, designers, and daily tasks.",
     "applicationCategory": "UtilitiesApplication",
     "operatingSystem": "All",
     "offers": {
@@ -41,6 +41,29 @@
     }
   }
   </script>
+  <style>
+    .cat-btn {
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--card-border);
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .cat-btn.active, .cat-btn:hover {
+      background: var(--accent-primary);
+      color: #fff;
+      border-color: var(--accent-primary);
+    }
+    .filter-search-box {
+      max-width: 500px;
+      margin: 0 auto 1.5rem;
+      position: relative;
+    }
+  </style>
 </head>
 <body>
   <!-- Header Navbar -->
@@ -54,7 +77,7 @@
       <div class="nav-controls">
         <button id="search-trigger" class="search-trigger" aria-label="Search tools">
           <span>🔍</span>
-          <span>Search utilities...</span>
+          <span>Search 100 utilities...</span>
           <span class="shortcut-badge">⌘K</span>
         </button>
 
@@ -67,7 +90,6 @@
   <div class="main-wrapper" style="padding-bottom: 0;">
     <div class="ad-unit ad-leaderboard">
       <span class="ad-label">Advertisement</span>
-      <!-- Google AdSense Slot -->
       <ins class="adsbygoogle"
            style="display:block"
            data-ad-client="ca-pub-8836410103198896"
@@ -80,104 +102,656 @@
 
   <!-- Hero Section -->
   <main class="main-wrapper">
-    <section style="text-align: center; padding: 2.5rem 1rem 1rem;">
-      <h1 style="font-size: 2.75rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 0.75rem; background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-        14 Free, Privacy-First Browser Tools
+    <section style="text-align: center; padding: 2.5rem 1rem 1.5rem;">
+      <div style="display:inline-block;padding:4px 12px;background:rgba(99,102,241,0.15);border:1px solid rgba(99,102,241,0.3);border-radius:999px;font-size:0.85rem;color:var(--accent-primary);font-weight:600;margin-bottom:1rem;">
+        ⚡ 100 Free Online Tools Available
+      </div>
+      <h1 style="font-size: 2.85rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 0.75rem; background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+        100 Free, Privacy-First Browser Tools
       </h1>
-      <p style="font-size: 1.15rem; color: var(--text-secondary); max-width: 680px; margin: 0 auto 2rem;">
-        Ultra-fast client-side utilities for developers, designers, and creators. All computations run 100% locally in your browser.
+      <p style="font-size: 1.15rem; color: var(--text-secondary); max-width: 720px; margin: 0 auto 2rem;">
+        Ultra-fast client-side utilities for developers, designers, students, and creators. All computations run 100% locally on your machine with zero server uploads.
       </p>
+
+      <!-- Instant Filter Search Input -->
+      <div class="filter-search-box">
+        <input type="text" id="live-filter" class="input-field" placeholder="🔎 Filter any of the 100 tools instantly..." style="border-radius:999px;padding:0.75rem 1.5rem;font-size:1rem;box-shadow:var(--shadow-md);">
+      </div>
+
+      <!-- Category Filter Pills -->
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;justify-content:center;margin-bottom:1.5rem;" id="cat-filters">
+        <button class="cat-btn active" onclick="filterCat('All')">All (100)</button>
+        <button class="cat-btn" onclick="filterCat('Developer')">Developer</button>
+        <button class="cat-btn" onclick="filterCat('Text')">Text</button>
+        <button class="cat-btn" onclick="filterCat('Design')">Design</button>
+        <button class="cat-btn" onclick="filterCat('Math')">Math</button>
+        <button class="cat-btn" onclick="filterCat('Media')">Media & Image</button>
+        <button class="cat-btn" onclick="filterCat('Security')">Security</button>
+        <button class="cat-btn" onclick="filterCat('Utility')">Utility</button>
+        <button class="cat-btn" onclick="filterCat('SEO')">SEO</button>
+      </div>
     </section>
 
     <!-- Tools Catalog Grid -->
     <section>
-      <h2 style="font-size: 1.5rem; margin-bottom: 1.25rem; font-weight: 700;">Featured Utilities</h2>
-      <div class="tools-grid">
-        
-        <a href="tools/file-size-compressor.html" class="tool-nav-card">
+      <div class="tools-grid" id="main-tools-grid">
+        <a href="tools/file-size-compressor.html" class="tool-nav-card" data-category="Media">
           <div class="tool-nav-icon">⚡</div>
           <div class="tool-nav-title">File-Size Compressor</div>
-          <div class="tool-nav-desc">Compress images & files in-browser with live compression ratio preview & instant download.</div>
+          <div class="tool-nav-desc">Compress images & files right in your browser with live ratio preview.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Media</span>
         </a>
-
-        <a href="tools/image-converter.html" class="tool-nav-card">
+        <a href="tools/image-converter.html" class="tool-nav-card" data-category="Media">
           <div class="tool-nav-icon">🖼️</div>
           <div class="tool-nav-title">Image Converter</div>
-          <div class="tool-nav-desc">Convert images seamlessly between PNG, JPG, WEBP, and BMP formats client-side.</div>
+          <div class="tool-nav-desc">Convert images between PNG, JPG, WEBP, and BMP formats instantly.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Media</span>
         </a>
-
-        <a href="tools/word-counter.html" class="tool-nav-card">
+        <a href="tools/word-counter.html" class="tool-nav-card" data-category="Text">
           <div class="tool-nav-icon">📝</div>
           <div class="tool-nav-title">Word Counter</div>
-          <div class="tool-nav-desc">Real-time word, character, sentence, paragraph counter, reading & speaking time estimator.</div>
+          <div class="tool-nav-desc">Real-time word, character, paragraph counter & reading time stats.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Text</span>
         </a>
-
-        <a href="tools/qr-code-generator.html" class="tool-nav-card">
+        <a href="tools/qr-code-generator.html" class="tool-nav-card" data-category="Utility">
           <div class="tool-nav-icon">📱</div>
           <div class="tool-nav-title">QR Code Generator</div>
-          <div class="tool-nav-desc">Generate customized QR codes with full color control, scale options, PNG & SVG export.</div>
+          <div class="tool-nav-desc">Create custom QR codes with colors, scale & instant SVG/PNG download.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Utility</span>
         </a>
-
-        <a href="tools/password-generator.html" class="tool-nav-card">
+        <a href="tools/password-generator.html" class="tool-nav-card" data-category="Security">
           <div class="tool-nav-icon">🔒</div>
           <div class="tool-nav-title">Password Generator</div>
-          <div class="tool-nav-desc">Create strong, customizable, cryptographically secure passwords with entropy meter.</div>
+          <div class="tool-nav-desc">Generate high-entropy secure passwords with length & symbol controls.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Security</span>
         </a>
-
-        <a href="tools/age-calculator.html" class="tool-nav-card">
+        <a href="tools/age-calculator.html" class="tool-nav-card" data-category="Math">
           <div class="tool-nav-icon">🎂</div>
           <div class="tool-nav-title">Age Calculator</div>
-          <div class="tool-nav-desc">Calculate exact age in years, months, days & seconds with upcoming birthday countdown.</div>
+          <div class="tool-nav-desc">Calculate exact age down to seconds, total days & upcoming birthday.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Math</span>
         </a>
-
-        <a href="tools/text-case-converter.html" class="tool-nav-card">
+        <a href="tools/text-case-converter.html" class="tool-nav-card" data-category="Text">
           <div class="tool-nav-icon">🔤</div>
           <div class="tool-nav-title">Text Case Converter</div>
-          <div class="tool-nav-desc">Convert text to UPPERCASE, lowercase, Title Case, camelCase, snake_case, PascalCase, etc.</div>
+          <div class="tool-nav-desc">Convert text to UPPERCASE, camelCase, Title Case, snake_case & more.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Text</span>
         </a>
-
-        <a href="tools/json-formatter.html" class="tool-nav-card">
+        <a href="tools/json-formatter.html" class="tool-nav-card" data-category="Developer">
           <div class="tool-nav-icon">{ }</div>
           <div class="tool-nav-title">JSON Formatter</div>
-          <div class="tool-nav-desc">Format, prettify, minify, validate JSON & inspect tree structures with line error pointers.</div>
+          <div class="tool-nav-desc">Format, minify, validate & navigate JSON data with tree view.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Developer</span>
         </a>
-
-        <a href="tools/color-converter.html" class="tool-nav-card">
+        <a href="tools/color-converter.html" class="tool-nav-card" data-category="Design">
           <div class="tool-nav-icon">🎨</div>
           <div class="tool-nav-title">Color Converter</div>
-          <div class="tool-nav-desc">Convert HEX, RGB, HSL, CMYK colors, check WCAG contrast & build complementary palettes.</div>
+          <div class="tool-nav-desc">Convert between HEX, RGB, HSL, CMYK & test WCAG contrast ratios.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Design</span>
         </a>
-
-        <a href="tools/base64-converter.html" class="tool-nav-card">
+        <a href="tools/base64-converter.html" class="tool-nav-card" data-category="Developer">
           <div class="tool-nav-icon">🔐</div>
           <div class="tool-nav-title">Base64 Encoder/Decoder</div>
-          <div class="tool-nav-desc">Encode and decode text strings or raw binary files into Base64 format instantly.</div>
+          <div class="tool-nav-desc">Encode and decode text or files to/from Base64 strings.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Developer</span>
         </a>
-
-        <a href="tools/stopwatch-timer.html" class="tool-nav-card">
+        <a href="tools/stopwatch-timer.html" class="tool-nav-card" data-category="Utility">
           <div class="tool-nav-icon">⏱️</div>
           <div class="tool-nav-title">Stopwatch & Timer</div>
-          <div class="tool-nav-desc">Millisecond precision stopwatch with split laps & customizable countdown timer chime.</div>
+          <div class="tool-nav-desc">Precision millisecond stopwatch with lap times & countdown chime.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Utility</span>
         </a>
-
-        <a href="tools/markdown-to-html.html" class="tool-nav-card">
+        <a href="tools/markdown-to-html.html" class="tool-nav-card" data-category="Developer">
           <div class="tool-nav-icon">📄</div>
           <div class="tool-nav-title">Markdown to HTML</div>
-          <div class="tool-nav-desc">Live side-by-side Markdown editor with rendered HTML preview & raw HTML export.</div>
+          <div class="tool-nav-desc">Live Markdown side-by-side previewer & HTML generator.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Developer</span>
         </a>
-
-        <a href="tools/unit-converter.html" class="tool-nav-card">
+        <a href="tools/unit-converter.html" class="tool-nav-card" data-category="Math">
           <div class="tool-nav-icon">📐</div>
           <div class="tool-nav-title">Unit Converter</div>
-          <div class="tool-nav-desc">Multi-unit conversion for Length, Weight, Temperature, Volume, Speed, and Data Sizes.</div>
+          <div class="tool-nav-desc">Convert Length, Weight, Temperature, Data Size & Speed units.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Math</span>
         </a>
-
-        <a href="tools/image-to-html-css.html" class="tool-nav-card">
+        <a href="tools/image-to-html-css.html" class="tool-nav-card" data-category="Design">
           <div class="tool-nav-icon">💻</div>
           <div class="tool-nav-title">Image to HTML/CSS</div>
-          <div class="tool-nav-desc">Convert uploaded images into pure HTML & CSS pixel art grid matrix representation.</div>
+          <div class="tool-nav-desc">Convert uploaded images into pure HTML & CSS pixel art matrix.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Design</span>
         </a>
+        <a href="tools/text-diff-checker.html" class="tool-nav-card" data-category="Text">
+          <div class="tool-nav-icon">↔️</div>
+          <div class="tool-nav-title">Text Diff Checker</div>
+          <div class="tool-nav-desc">Compare two texts side-by-side with line-by-line diff highlighting.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Text</span>
+        </a>
+        <a href="tools/lorem-ipsum-generator.html" class="tool-nav-card" data-category="Text">
+          <div class="tool-nav-icon">📖</div>
+          <div class="tool-nav-title">Lorem Ipsum Generator</div>
+          <div class="tool-nav-desc">Generate placeholder lorem ipsum text with custom paragraph and word counts.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Text</span>
+        </a>
+        <a href="tools/text-to-speech.html" class="tool-nav-card" data-category="Text">
+          <div class="tool-nav-icon">🔊</div>
+          <div class="tool-nav-title">Text to Speech</div>
+          <div class="tool-nav-desc">Convert text to speech using browser TTS with voice, speed & pitch controls.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Text</span>
+        </a>
+        <a href="tools/speech-to-text.html" class="tool-nav-card" data-category="Text">
+          <div class="tool-nav-icon">🎤</div>
+          <div class="tool-nav-title">Speech to Text</div>
+          <div class="tool-nav-desc">Voice-to-text transcription using Web Speech API recognition.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Text</span>
+        </a>
+        <a href="tools/fancy-text-generator.html" class="tool-nav-card" data-category="Text">
+          <div class="tool-nav-icon">✨</div>
+          <div class="tool-nav-title">Fancy Text Generator</div>
+          <div class="tool-nav-desc">Generate 20+ fancy Unicode text styles: bold, italic, script, bubble & more.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Text</span>
+        </a>
+        <a href="tools/text-reverser.html" class="tool-nav-card" data-category="Text">
+          <div class="tool-nav-icon">🔄</div>
+          <div class="tool-nav-title">Text Reverser</div>
+          <div class="tool-nav-desc">Reverse text, words, or lines and check if text is a palindrome.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Text</span>
+        </a>
+        <a href="tools/duplicate-line-remover.html" class="tool-nav-card" data-category="Text">
+          <div class="tool-nav-icon">🧹</div>
+          <div class="tool-nav-title">Duplicate Line Remover</div>
+          <div class="tool-nav-desc">Remove duplicate lines from text with sorting and case options.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Text</span>
+        </a>
+        <a href="tools/text-to-slug.html" class="tool-nav-card" data-category="Text">
+          <div class="tool-nav-icon">🔗</div>
+          <div class="tool-nav-title">Text to URL Slug</div>
+          <div class="tool-nav-desc">Convert text to clean URL slugs with custom separators and options.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Text</span>
+        </a>
+        <a href="tools/ascii-art-generator.html" class="tool-nav-card" data-category="Text">
+          <div class="tool-nav-icon">🎭</div>
+          <div class="tool-nav-title">ASCII Art Generator</div>
+          <div class="tool-nav-desc">Convert text to large ASCII art characters in multiple font styles.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Text</span>
+        </a>
+        <a href="tools/text-sorter.html" class="tool-nav-card" data-category="Text">
+          <div class="tool-nav-icon">📋</div>
+          <div class="tool-nav-title">Text Line Sorter</div>
+          <div class="tool-nav-desc">Sort text lines alphabetically, by length, numerically, or randomly.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Text</span>
+        </a>
+        <a href="tools/text-to-binary.html" class="tool-nav-card" data-category="Text">
+          <div class="tool-nav-icon">01</div>
+          <div class="tool-nav-title">Text to Binary</div>
+          <div class="tool-nav-desc">Convert text to binary, hex, and octal representations and back.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Text</span>
+        </a>
+        <a href="tools/html-encoder-decoder.html" class="tool-nav-card" data-category="Developer">
+          <div class="tool-nav-icon">&lt;&gt;</div>
+          <div class="tool-nav-title">HTML Entity Encoder/Decoder</div>
+          <div class="tool-nav-desc">Encode and decode HTML entities including &amp; &lt; &gt; &quot; and more.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Developer</span>
+        </a>
+        <a href="tools/url-encoder-decoder.html" class="tool-nav-card" data-category="Developer">
+          <div class="tool-nav-icon">🌐</div>
+          <div class="tool-nav-title">URL Encoder/Decoder</div>
+          <div class="tool-nav-desc">URL encode and decode strings using encodeURI and encodeURIComponent.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Developer</span>
+        </a>
+        <a href="tools/jwt-decoder.html" class="tool-nav-card" data-category="Developer">
+          <div class="tool-nav-icon">🔑</div>
+          <div class="tool-nav-title">JWT Token Decoder</div>
+          <div class="tool-nav-desc">Decode JWT tokens and inspect Header, Payload, and expiry status.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Developer</span>
+        </a>
+        <a href="tools/uuid-generator.html" class="tool-nav-card" data-category="Developer">
+          <div class="tool-nav-icon">🆔</div>
+          <div class="tool-nav-title">UUID Generator</div>
+          <div class="tool-nav-desc">Generate RFC 4122 v4 UUIDs in bulk with multiple format options.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Developer</span>
+        </a>
+        <a href="tools/hash-generator.html" class="tool-nav-card" data-category="Developer">
+          <div class="tool-nav-icon">#️⃣</div>
+          <div class="tool-nav-title">Hash Generator</div>
+          <div class="tool-nav-desc">Generate MD5, SHA-1, SHA-256, SHA-512 hashes from text or files.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Developer</span>
+        </a>
+        <a href="tools/regex-tester.html" class="tool-nav-card" data-category="Developer">
+          <div class="tool-nav-icon">🔍</div>
+          <div class="tool-nav-title">Regex Tester</div>
+          <div class="tool-nav-desc">Test and debug regular expressions with live match highlighting.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Developer</span>
+        </a>
+        <a href="tools/json-to-csv.html" class="tool-nav-card" data-category="Developer">
+          <div class="tool-nav-icon">📊</div>
+          <div class="tool-nav-title">JSON to CSV Converter</div>
+          <div class="tool-nav-desc">Convert JSON arrays to CSV format with preview and download.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Developer</span>
+        </a>
+        <a href="tools/csv-to-json.html" class="tool-nav-card" data-category="Developer">
+          <div class="tool-nav-icon">📋</div>
+          <div class="tool-nav-title">CSV to JSON Converter</div>
+          <div class="tool-nav-desc">Parse CSV files and convert to JSON with custom delimiter support.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Developer</span>
+        </a>
+        <a href="tools/json-to-yaml.html" class="tool-nav-card" data-category="Developer">
+          <div class="tool-nav-icon">📝</div>
+          <div class="tool-nav-title">JSON to YAML Converter</div>
+          <div class="tool-nav-desc">Convert between JSON and YAML formats with pretty printing.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Developer</span>
+        </a>
+        <a href="tools/cron-expression-parser.html" class="tool-nav-card" data-category="Developer">
+          <div class="tool-nav-icon">⏰</div>
+          <div class="tool-nav-title">Cron Expression Parser</div>
+          <div class="tool-nav-desc">Parse cron expressions into human-readable descriptions and show next run times.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Developer</span>
+        </a>
+        <a href="tools/xml-formatter.html" class="tool-nav-card" data-category="Developer">
+          <div class="tool-nav-icon">📄</div>
+          <div class="tool-nav-title">XML Formatter</div>
+          <div class="tool-nav-desc">Format, prettify, minify, and validate XML documents.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Developer</span>
+        </a>
+        <a href="tools/css-gradient-generator.html" class="tool-nav-card" data-category="Design">
+          <div class="tool-nav-icon">🌈</div>
+          <div class="tool-nav-title">CSS Gradient Generator</div>
+          <div class="tool-nav-desc">Visual gradient builder for linear, radial, and conic CSS gradients.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Design</span>
+        </a>
+        <a href="tools/box-shadow-generator.html" class="tool-nav-card" data-category="Design">
+          <div class="tool-nav-icon">🔳</div>
+          <div class="tool-nav-title">Box Shadow Generator</div>
+          <div class="tool-nav-desc">Create and preview CSS box shadow effects with visual sliders.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Design</span>
+        </a>
+        <a href="tools/border-radius-generator.html" class="tool-nav-card" data-category="Design">
+          <div class="tool-nav-icon">⬛</div>
+          <div class="tool-nav-title">Border Radius Generator</div>
+          <div class="tool-nav-desc">Generate custom CSS border radius with per-corner controls and presets.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Design</span>
+        </a>
+        <a href="tools/color-palette-generator.html" class="tool-nav-card" data-category="Design">
+          <div class="tool-nav-icon">🎨</div>
+          <div class="tool-nav-title">Color Palette Generator</div>
+          <div class="tool-nav-desc">Generate complementary, analogous, triadic color palettes from a base color.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Design</span>
+        </a>
+        <a href="tools/color-picker.html" class="tool-nav-card" data-category="Design">
+          <div class="tool-nav-icon">💧</div>
+          <div class="tool-nav-title">Color Picker</div>
+          <div class="tool-nav-desc">Pick colors and get HEX, RGB, HSL values with color history.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Design</span>
+        </a>
+        <a href="tools/flexbox-playground.html" class="tool-nav-card" data-category="Design">
+          <div class="tool-nav-icon">📦</div>
+          <div class="tool-nav-title">Flexbox Playground</div>
+          <div class="tool-nav-desc">Interactive flexbox property explorer with live CSS code output.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Design</span>
+        </a>
+        <a href="tools/grid-generator.html" class="tool-nav-card" data-category="Design">
+          <div class="tool-nav-icon">⬜</div>
+          <div class="tool-nav-title">CSS Grid Generator</div>
+          <div class="tool-nav-desc">Visual CSS grid layout builder with drag-to-merge cells.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Design</span>
+        </a>
+        <a href="tools/css-minifier.html" class="tool-nav-card" data-category="Developer">
+          <div class="tool-nav-icon">⚡</div>
+          <div class="tool-nav-title">CSS Minifier</div>
+          <div class="tool-nav-desc">Minify and beautify CSS files with size savings statistics.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Developer</span>
+        </a>
+        <a href="tools/html-minifier.html" class="tool-nav-card" data-category="Developer">
+          <div class="tool-nav-icon">🗜️</div>
+          <div class="tool-nav-title">HTML Minifier</div>
+          <div class="tool-nav-desc">Minify and prettify HTML markup with whitespace and comment removal.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Developer</span>
+        </a>
+        <a href="tools/js-minifier.html" class="tool-nav-card" data-category="Developer">
+          <div class="tool-nav-icon">📉</div>
+          <div class="tool-nav-title">JavaScript Minifier</div>
+          <div class="tool-nav-desc">Minify JavaScript files with comment and whitespace removal.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Developer</span>
+        </a>
+        <a href="tools/scientific-calculator.html" class="tool-nav-card" data-category="Math">
+          <div class="tool-nav-icon">🔬</div>
+          <div class="tool-nav-title">Scientific Calculator</div>
+          <div class="tool-nav-desc">Full scientific calculator with trigonometry, logarithms, and history.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Math</span>
+        </a>
+        <a href="tools/percentage-calculator.html" class="tool-nav-card" data-category="Math">
+          <div class="tool-nav-icon">%</div>
+          <div class="tool-nav-title">Percentage Calculator</div>
+          <div class="tool-nav-desc">Calculate percentages, percentage changes, and increases/decreases.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Math</span>
+        </a>
+        <a href="tools/loan-emi-calculator.html" class="tool-nav-card" data-category="Math">
+          <div class="tool-nav-icon">🏦</div>
+          <div class="tool-nav-title">Loan EMI Calculator</div>
+          <div class="tool-nav-desc">Calculate EMI, total interest and amortization schedule for loans.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Math</span>
+        </a>
+        <a href="tools/bmi-calculator.html" class="tool-nav-card" data-category="Math">
+          <div class="tool-nav-icon">⚖️</div>
+          <div class="tool-nav-title">BMI Calculator</div>
+          <div class="tool-nav-desc">Calculate Body Mass Index (BMI) in metric and imperial units.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Math</span>
+        </a>
+        <a href="tools/gst-calculator.html" class="tool-nav-card" data-category="Math">
+          <div class="tool-nav-icon">🧾</div>
+          <div class="tool-nav-title">GST / Tax Calculator</div>
+          <div class="tool-nav-desc">Add or extract GST and tax from prices with multi-item support.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Math</span>
+        </a>
+        <a href="tools/discount-calculator.html" class="tool-nav-card" data-category="Math">
+          <div class="tool-nav-icon">🏷️</div>
+          <div class="tool-nav-title">Discount Calculator</div>
+          <div class="tool-nav-desc">Calculate sale price, discount amount, and savings percentage.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Math</span>
+        </a>
+        <a href="tools/tip-calculator.html" class="tool-nav-card" data-category="Math">
+          <div class="tool-nav-icon">🍽️</div>
+          <div class="tool-nav-title">Tip Calculator</div>
+          <div class="tool-nav-desc">Calculate tip amount and split bills across multiple people.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Math</span>
+        </a>
+        <a href="tools/number-to-words.html" class="tool-nav-card" data-category="Math">
+          <div class="tool-nav-icon">🔢</div>
+          <div class="tool-nav-title">Number to Words</div>
+          <div class="tool-nav-desc">Convert numbers to English words and Indian numbering system.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Math</span>
+        </a>
+        <a href="tools/roman-numeral-converter.html" class="tool-nav-card" data-category="Math">
+          <div class="tool-nav-icon">Ⅷ</div>
+          <div class="tool-nav-title">Roman Numeral Converter</div>
+          <div class="tool-nav-desc">Convert between Arabic numbers and Roman numerals (1-3999).</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Math</span>
+        </a>
+        <a href="tools/binary-calculator.html" class="tool-nav-card" data-category="Developer">
+          <div class="tool-nav-icon">🔢</div>
+          <div class="tool-nav-title">Binary Calculator</div>
+          <div class="tool-nav-desc">Convert and calculate between binary, octal, decimal, and hex.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Developer</span>
+        </a>
+        <a href="tools/image-resizer.html" class="tool-nav-card" data-category="Media">
+          <div class="tool-nav-icon">📐</div>
+          <div class="tool-nav-title">Image Resizer</div>
+          <div class="tool-nav-desc">Resize images to custom dimensions with aspect ratio lock.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Media</span>
+        </a>
+        <a href="tools/image-cropper.html" class="tool-nav-card" data-category="Media">
+          <div class="tool-nav-icon">✂️</div>
+          <div class="tool-nav-title">Image Cropper</div>
+          <div class="tool-nav-desc">Crop images with interactive selection and preset aspect ratios.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Media</span>
+        </a>
+        <a href="tools/image-color-picker.html" class="tool-nav-card" data-category="Media">
+          <div class="tool-nav-icon">💉</div>
+          <div class="tool-nav-title">Image Color Picker</div>
+          <div class="tool-nav-desc">Pick any color from an uploaded image with eyedropper tool.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Media</span>
+        </a>
+        <a href="tools/image-flipper.html" class="tool-nav-card" data-category="Media">
+          <div class="tool-nav-icon">↩️</div>
+          <div class="tool-nav-title">Image Flipper & Rotator</div>
+          <div class="tool-nav-desc">Flip and rotate images horizontally, vertically, or by custom angle.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Media</span>
+        </a>
+        <a href="tools/image-metadata-viewer.html" class="tool-nav-card" data-category="Media">
+          <div class="tool-nav-icon">ℹ️</div>
+          <div class="tool-nav-title">Image Metadata Viewer</div>
+          <div class="tool-nav-desc">View image EXIF metadata, dimensions, and file information.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Media</span>
+        </a>
+        <a href="tools/svg-to-png.html" class="tool-nav-card" data-category="Media">
+          <div class="tool-nav-icon">🔄</div>
+          <div class="tool-nav-title">SVG to PNG Converter</div>
+          <div class="tool-nav-desc">Convert SVG files or code to PNG with custom dimensions.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Media</span>
+        </a>
+        <a href="tools/image-border-generator.html" class="tool-nav-card" data-category="Media">
+          <div class="tool-nav-icon">🖼️</div>
+          <div class="tool-nav-title">Image Border Generator</div>
+          <div class="tool-nav-desc">Add custom borders, padding, and shadow to images.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Media</span>
+        </a>
+        <a href="tools/watermark-tool.html" class="tool-nav-card" data-category="Media">
+          <div class="tool-nav-icon">💧</div>
+          <div class="tool-nav-title">Image Watermark Tool</div>
+          <div class="tool-nav-desc">Add text or image watermarks to photos with opacity control.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Media</span>
+        </a>
+        <a href="tools/ico-converter.html" class="tool-nav-card" data-category="Media">
+          <div class="tool-nav-icon">⭐</div>
+          <div class="tool-nav-title">ICO / Favicon Converter</div>
+          <div class="tool-nav-desc">Create favicons in multiple sizes from any image file.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Media</span>
+        </a>
+        <a href="tools/gif-to-png.html" class="tool-nav-card" data-category="Media">
+          <div class="tool-nav-icon">🎞️</div>
+          <div class="tool-nav-title">GIF Frame Extractor</div>
+          <div class="tool-nav-desc">Extract frames from animated GIF files and download as PNG.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Media</span>
+        </a>
+        <a href="tools/caesar-cipher.html" class="tool-nav-card" data-category="Security">
+          <div class="tool-nav-icon">🔐</div>
+          <div class="tool-nav-title">Caesar Cipher</div>
+          <div class="tool-nav-desc">Encode and decode text with Caesar cipher and brute force all shifts.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Security</span>
+        </a>
+        <a href="tools/morse-code-translator.html" class="tool-nav-card" data-category="Security">
+          <div class="tool-nav-icon">📡</div>
+          <div class="tool-nav-title">Morse Code Translator</div>
+          <div class="tool-nav-desc">Translate between text and Morse code with audio playback.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Security</span>
+        </a>
+        <a href="tools/password-strength-checker.html" class="tool-nav-card" data-category="Security">
+          <div class="tool-nav-icon">🔏</div>
+          <div class="tool-nav-title">Password Strength Checker</div>
+          <div class="tool-nav-desc">Check password strength with crack time estimation and tips.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Security</span>
+        </a>
+        <a href="tools/otp-generator.html" class="tool-nav-card" data-category="Security">
+          <div class="tool-nav-icon">🔢</div>
+          <div class="tool-nav-title">OTP Generator</div>
+          <div class="tool-nav-desc">Generate time-based and random OTP codes for authentication.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Security</span>
+        </a>
+        <a href="tools/credit-card-validator.html" class="tool-nav-card" data-category="Security">
+          <div class="tool-nav-icon">💳</div>
+          <div class="tool-nav-title">Credit Card Validator</div>
+          <div class="tool-nav-desc">Validate credit card numbers with Luhn algorithm and card type detection.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Security</span>
+        </a>
+        <a href="tools/bcrypt-generator.html" class="tool-nav-card" data-category="Security">
+          <div class="tool-nav-icon">#️⃣</div>
+          <div class="tool-nav-title">Bcrypt Hash Generator</div>
+          <div class="tool-nav-desc">Generate and verify bcrypt-style password hashes (educational demo).</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Security</span>
+        </a>
+        <a href="tools/rsa-key-generator.html" class="tool-nav-card" data-category="Security">
+          <div class="tool-nav-icon">🔑</div>
+          <div class="tool-nav-title">RSA Key Generator</div>
+          <div class="tool-nav-desc">Generate RSA public/private key pairs in PEM format.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Security</span>
+        </a>
+        <a href="tools/htpasswd-generator.html" class="tool-nav-card" data-category="Security">
+          <div class="tool-nav-icon">🔒</div>
+          <div class="tool-nav-title">.htpasswd Generator</div>
+          <div class="tool-nav-desc">Generate .htpasswd entries for Apache HTTP server password files.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Security</span>
+        </a>
+        <a href="tools/timezone-converter.html" class="tool-nav-card" data-category="Utility">
+          <div class="tool-nav-icon">🌍</div>
+          <div class="tool-nav-title">Timezone Converter</div>
+          <div class="tool-nav-desc">Convert times between timezones with a world clock display.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Utility</span>
+        </a>
+        <a href="tools/date-difference-calculator.html" class="tool-nav-card" data-category="Utility">
+          <div class="tool-nav-icon">📅</div>
+          <div class="tool-nav-title">Date Difference Calculator</div>
+          <div class="tool-nav-desc">Calculate the exact difference between two dates in all units.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Utility</span>
+        </a>
+        <a href="tools/unix-timestamp-converter.html" class="tool-nav-card" data-category="Utility">
+          <div class="tool-nav-icon">⌛</div>
+          <div class="tool-nav-title">Unix Timestamp Converter</div>
+          <div class="tool-nav-desc">Convert Unix timestamps to dates and vice versa with live counter.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Utility</span>
+        </a>
+        <a href="tools/countdown-timer.html" class="tool-nav-card" data-category="Utility">
+          <div class="tool-nav-icon">⏳</div>
+          <div class="tool-nav-title">Event Countdown Timer</div>
+          <div class="tool-nav-desc">Set countdown timers for events with notifications and localStorage save.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Utility</span>
+        </a>
+        <a href="tools/calendar-generator.html" class="tool-nav-card" data-category="Utility">
+          <div class="tool-nav-icon">📆</div>
+          <div class="tool-nav-title">Calendar Generator</div>
+          <div class="tool-nav-desc">Generate printable monthly calendars with custom events.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Utility</span>
+        </a>
+        <a href="tools/time-zone-clock.html" class="tool-nav-card" data-category="Utility">
+          <div class="tool-nav-icon">🕐</div>
+          <div class="tool-nav-title">World Time Zone Clock</div>
+          <div class="tool-nav-desc">Live clocks for major cities around the world in all timezones.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Utility</span>
+        </a>
+        <a href="tools/meta-tag-generator.html" class="tool-nav-card" data-category="SEO">
+          <div class="tool-nav-icon">🏷️</div>
+          <div class="tool-nav-title">Meta Tag Generator</div>
+          <div class="tool-nav-desc">Generate complete meta tags with OG, Twitter card, and SEO fields.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">SEO</span>
+        </a>
+        <a href="tools/open-graph-generator.html" class="tool-nav-card" data-category="SEO">
+          <div class="tool-nav-icon">📣</div>
+          <div class="tool-nav-title">Open Graph Generator</div>
+          <div class="tool-nav-desc">Generate Open Graph tags with social media preview simulation.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">SEO</span>
+        </a>
+        <a href="tools/robots-txt-generator.html" class="tool-nav-card" data-category="SEO">
+          <div class="tool-nav-icon">🤖</div>
+          <div class="tool-nav-title">Robots.txt Generator</div>
+          <div class="tool-nav-desc">Build robots.txt files with rules for different search engine bots.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">SEO</span>
+        </a>
+        <a href="tools/sitemap-generator.html" class="tool-nav-card" data-category="SEO">
+          <div class="tool-nav-icon">🗺️</div>
+          <div class="tool-nav-title">XML Sitemap Generator</div>
+          <div class="tool-nav-desc">Create XML sitemaps with priority and changefreq settings.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">SEO</span>
+        </a>
+        <a href="tools/readability-checker.html" class="tool-nav-card" data-category="SEO">
+          <div class="tool-nav-icon">📖</div>
+          <div class="tool-nav-title">Readability Checker</div>
+          <div class="tool-nav-desc">Calculate Flesch Reading Ease, Kincaid Grade, and Gunning Fog scores.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">SEO</span>
+        </a>
+        <a href="tools/keyword-density-checker.html" class="tool-nav-card" data-category="SEO">
+          <div class="tool-nav-icon">🔍</div>
+          <div class="tool-nav-title">Keyword Density Analyzer</div>
+          <div class="tool-nav-desc">Analyze keyword frequency and density in your content.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">SEO</span>
+        </a>
+        <a href="tools/random-number-generator.html" class="tool-nav-card" data-category="Utility">
+          <div class="tool-nav-icon">🎲</div>
+          <div class="tool-nav-title">Random Number Generator</div>
+          <div class="tool-nav-desc">Generate random numbers with range, quantity, and dice mode options.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Utility</span>
+        </a>
+        <a href="tools/coin-flipper.html" class="tool-nav-card" data-category="Utility">
+          <div class="tool-nav-icon">🪙</div>
+          <div class="tool-nav-title">Coin Flipper & Dice Roller</div>
+          <div class="tool-nav-desc">Flip coins and roll dice with 3D CSS animations and history.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Utility</span>
+        </a>
+        <a href="tools/pomodoro-timer.html" class="tool-nav-card" data-category="Utility">
+          <div class="tool-nav-icon">🍅</div>
+          <div class="tool-nav-title">Pomodoro Timer</div>
+          <div class="tool-nav-desc">Focus timer with Pomodoro technique, circular progress, and audio alerts.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Utility</span>
+        </a>
+        <a href="tools/notepad.html" class="tool-nav-card" data-category="Utility">
+          <div class="tool-nav-icon">📓</div>
+          <div class="tool-nav-title">Online Notepad</div>
+          <div class="tool-nav-desc">Browser-based notepad with auto-save to localStorage.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Utility</span>
+        </a>
+        <a href="tools/screen-resolution-checker.html" class="tool-nav-card" data-category="Utility">
+          <div class="tool-nav-icon">🖥️</div>
+          <div class="tool-nav-title">Screen Resolution Checker</div>
+          <div class="tool-nav-desc">View screen resolution, viewport size, browser info, and device details.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Utility</span>
+        </a>
+        <a href="tools/table-generator.html" class="tool-nav-card" data-category="Developer">
+          <div class="tool-nav-icon">📊</div>
+          <div class="tool-nav-title">HTML Table Generator</div>
+          <div class="tool-nav-desc">Create styled HTML tables with editable cells and CSS themes.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Developer</span>
+        </a>
+        <a href="tools/list-randomizer.html" class="tool-nav-card" data-category="Utility">
+          <div class="tool-nav-icon">🔀</div>
+          <div class="tool-nav-title">List Randomizer</div>
+          <div class="tool-nav-desc">Shuffle and randomize lists or pick random items from any list.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Utility</span>
+        </a>
+        <a href="tools/number-sorter.html" class="tool-nav-card" data-category="Math">
+          <div class="tool-nav-icon">📈</div>
+          <div class="tool-nav-title">Number Sorter & Statistics</div>
+          <div class="tool-nav-desc">Sort numbers and calculate mean, median, mode, and standard deviation.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Math</span>
+        </a>
+        <a href="tools/barcode-generator.html" class="tool-nav-card" data-category="Utility">
+          <div class="tool-nav-icon">▊▌▍▋</div>
+          <div class="tool-nav-title">Barcode Generator</div>
+          <div class="tool-nav-desc">Generate Code 128, EAN-13, and Code 39 barcodes in the browser.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Utility</span>
+        </a>
+        <a href="tools/data-uri-converter.html" class="tool-nav-card" data-category="Developer">
+          <div class="tool-nav-icon">📦</div>
+          <div class="tool-nav-title">Data URI Converter</div>
+          <div class="tool-nav-desc">Convert files to base64 data URIs for embedding in HTML/CSS.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Developer</span>
+        </a>
+        <a href="tools/nato-alphabet.html" class="tool-nav-card" data-category="Utility">
+          <div class="tool-nav-icon">📻</div>
+          <div class="tool-nav-title">NATO Phonetic Alphabet</div>
+          <div class="tool-nav-desc">Convert text to NATO phonetic alphabet words with audio playback.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Utility</span>
+        </a>
+        <a href="tools/invoice-generator.html" class="tool-nav-card" data-category="Utility">
+          <div class="tool-nav-icon">🧾</div>
+          <div class="tool-nav-title">Invoice Generator</div>
+          <div class="tool-nav-desc">Create professional invoices with line items and print support.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Utility</span>
+        </a>
+        <a href="tools/nameplate-generator.html" class="tool-nav-card" data-category="Utility">
+          <div class="tool-nav-icon">💼</div>
+          <div class="tool-nav-title">Business Card Generator</div>
+          <div class="tool-nav-desc">Design and download printable business cards with 5 style themes.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Utility</span>
+        </a>
+        <a href="tools/ip-address-lookup.html" class="tool-nav-card" data-category="Utility">
+          <div class="tool-nav-icon">🌐</div>
+          <div class="tool-nav-title">IP Address Lookup</div>
+          <div class="tool-nav-desc">Look up IP addresses to see geolocation and ISP information.</div>
+          <span style="font-size:0.75rem;padding:2px 8px;background:var(--bg-tertiary);border-radius:4px;color:var(--accent-primary);align-self:flex-start;margin-top:auto;">Utility</span>
+        </a>
+      </div>
+      <div id="no-tools-found" style="display:none;text-align:center;padding:3rem 1rem;color:var(--text-secondary);font-size:1.1rem;">
+        No tools found matching your search.
+      </div>
+    </section>
 
+    <!-- Mid-Page In-Feed Ad Unit -->
+    <section style="margin-top: 3.5rem;">
+      <div class="ad-unit ad-infeed">
+        <span class="ad-label">Advertisement</span>
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-8836410103198896"
+             data-ad-slot="2000000001"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
       </div>
     </section>
   </main>
@@ -187,7 +761,7 @@
     <div class="search-modal">
       <div class="search-input-wrapper">
         <span>🔍</span>
-        <input type="text" id="search-input" placeholder="Type to search all 14 tools..." autocomplete="off">
+        <input type="text" id="search-input" placeholder="Type to search all 100 utilities...">
       </div>
       <div id="search-results" class="search-results"></div>
     </div>
@@ -196,39 +770,87 @@
   <!-- Footer -->
   <footer class="app-footer">
     <div class="footer-container">
-      <div class="footer-col">
-        <h4>OmniUtil Web Suite</h4>
-        <p style="color: var(--text-secondary); font-size: 0.85rem;">
-          A suite of 14 privacy-focused online developer and utility tools. All data stays local in your browser.
+      <div class="footer-brand">
+        <div class="brand-logo">
+          <div class="brand-icon">OU</div>
+          <span>OmniUtil</span>
+        </div>
+        <p style="color: var(--text-secondary); margin-top: 0.5rem; max-width: 320px;">
+          The all-in-one privacy-focused productivity toolkit with 100 client-side utilities.
         </p>
       </div>
 
-      <div class="footer-col">
-        <h4>Popular Tools</h4>
-        <ul class="footer-links">
-          <li><a href="tools/file-size-compressor.html">File-Size Compressor</a></li>
-          <li><a href="tools/word-counter.html">Word Counter</a></li>
-          <li><a href="tools/qr-code-generator.html">QR Code Generator</a></li>
-          <li><a href="tools/json-formatter.html">JSON Formatter</a></li>
-        </ul>
-      </div>
+      <div class="footer-links-group">
+        <div class="footer-col">
+          <h4>Popular Utilities</h4>
+          <a href="tools/file-size-compressor.html">File Compressor</a>
+          <a href="tools/image-converter.html">Image Converter</a>
+          <a href="tools/json-formatter.html">JSON Formatter</a>
+          <a href="tools/scientific-calculator.html">Scientific Calculator</a>
+          <a href="tools/password-generator.html">Password Generator</a>
+        </div>
 
-      <div class="footer-col">
-        <h4>Developer & Design</h4>
-        <ul class="footer-links">
-          <li><a href="tools/color-converter.html">Color Code Converter</a></li>
-          <li><a href="tools/base64-converter.html">Base64 Converter</a></li>
-          <li><a href="tools/markdown-to-html.html">Markdown to HTML</a></li>
-          <li><a href="tools/image-to-html-css.html">Image to HTML/CSS</a></li>
-        </ul>
+        <div class="footer-col">
+          <h4>Categories</h4>
+          <a href="#" onclick="filterCat('Developer');return false;">Developer Tools</a>
+          <a href="#" onclick="filterCat('Design');return false;">Design & CSS</a>
+          <a href="#" onclick="filterCat('Math');return false;">Math & Calculators</a>
+          <a href="#" onclick="filterCat('Media');return false;">Media & Image</a>
+          <a href="#" onclick="filterCat('Security');return false;">Security & Crypto</a>
+        </div>
+
+        <div class="footer-col">
+          <h4>Privacy & Legal</h4>
+          <span style="font-size:0.85rem;color:var(--text-secondary);display:block;line-height:1.6;">
+            100% Client-Side. No telemetry, zero cookies, zero file storage.
+          </span>
+          <a href="ads.txt">ads.txt verification</a>
+          <a href="sitemap.xml">XML Sitemap</a>
+        </div>
       </div>
     </div>
 
     <div class="footer-bottom">
-      &copy; 2026 OmniUtil. Built for maximum speed, security, and responsive performance. Deployed on GitHub Pages.
+      &copy; 2026 OmniUtil. All rights reserved. Built for ultra-fast, offline-capable productivity.
     </div>
   </footer>
 
+  <!-- Scripts -->
   <script src="js/app.js"></script>
+  <script src="js/ads-config.js"></script>
+  <script>
+    let activeCat = 'All';
+    function filterCat(cat) {
+      activeCat = cat;
+      document.querySelectorAll('.cat-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.textContent.startsWith(cat));
+      });
+      applyFilters();
+    }
+
+    function applyFilters() {
+      const q = document.getElementById('live-filter').value.toLowerCase().trim();
+      const cards = document.querySelectorAll('#main-tools-grid .tool-nav-card');
+      let visibleCount = 0;
+
+      cards.forEach(card => {
+        const cCat = card.getAttribute('data-category');
+        const text = card.textContent.toLowerCase();
+        const matchesCat = (activeCat === 'All' || cCat === activeCat || (activeCat === 'Media' && cCat === 'Media'));
+        const matchesQuery = !q || text.includes(q);
+
+        if (matchesCat && matchesQuery) {
+          card.style.display = 'flex';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      document.getElementById('no-tools-found').style.display = visibleCount === 0 ? 'block' : 'none';
+    }
+
+    document.getElementById('live-filter').addEventListener('input', applyFilters);
+  </script>
 </body>
 </html>

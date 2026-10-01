@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Morse Code Translator & Audio Player | OmniUtil</title>
+  <meta name="description" content="Translate text to international Morse code and decode Morse signals back to English with synthesized audio playback.">
+  <link rel="canonical" href="https://shubhamshshaw.github.io/omniutil-suite/tools/morse-code-translator.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Morse Code Translator & Audio Player | OmniUtil">
+  <meta property="og:description" content="Translate text to international Morse code and decode Morse signals back to English with synthesized audio playback.">
+  <meta property="og:url" content="https://shubhamshshaw.github.io/omniutil-suite/tools/morse-code-translator.html">
+
+  <!-- Google AdSense Verification & Auto ads script -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8836410103198896" crossorigin="anonymous"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css">
+  
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-container">
+      <a href="../index.html" class="brand-logo"><div class="brand-icon">OU</div><span>OmniUtil</span></a>
+      <div class="nav-controls">
+        <button id="search-trigger" class="search-trigger"><span>🔍</span><span>Search tools...</span><span class="shortcut-badge">⌘K</span></button>
+        <button id="theme-toggle" class="btn-icon">☀️</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <div class="tool-layout">
+      <div class="tool-card">
+        <div class="tool-header">
+          <div class="tool-title-group">
+            <h1>📡 Morse Code Translator & Audio Player</h1>
+            <p class="tool-description">Translate text to international Morse code and decode Morse signals back to English with synthesized audio playback.</p>
+          </div>
+        </div>
+        
+        <div style="display:flex;gap:0.5rem;margin-bottom:1rem;">
+          <button id="m-t2m" class="btn btn-primary" onclick="setMorseMode('t2m')">Text → Morse</button>
+          <button id="m-m2t" class="btn btn-secondary" onclick="setMorseMode('m2t')">Morse → Text</button>
+        </div>
+        <div class="form-group">
+          <label class="form-label" id="m-label">Input Text</label>
+          <textarea id="morse-in" class="textarea-field" style="min-height:120px;" placeholder="Type text...">SOS Emergency Call</textarea>
+        </div>
+        <div style="display:flex;gap:0.75rem;margin:1rem 0;flex-wrap:wrap;">
+          <button class="btn btn-primary" onclick="translateMorse()">Translate</button>
+          <button class="btn btn-secondary" onclick="playMorseAudio()">🔊 Play Morse Audio</button>
+          <button class="btn btn-secondary" onclick="copyToClipboard(document.getElementById('morse-out').value)">Copy Result</button>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Translated Morse / Text</label>
+          <textarea id="morse-out" class="textarea-field" style="min-height:120px;font-family:'Fira Code',monospace;" readonly></textarea>
+        </div>
+        
+      </div>
+      <aside>
+        <div class="ad-unit ad-sidebar">
+          <span class="ad-label">Advertisement</span>
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8836410103198896" data-ad-slot="3000000062" data-ad-format="auto"></ins>
+          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <div id="search-modal-overlay" class="modal-overlay">
+    <div class="search-modal">
+      <div class="search-input-wrapper"><span>🔍</span><input type="text" id="search-input" placeholder="Search utilities..."></div>
+      <div id="search-results" class="search-results"></div>
+    </div>
+  </div>
+
+  <footer class="app-footer">
+    <div class="footer-bottom">&copy; 2026 OmniUtil. All rights reserved. Built for maximum speed, security, and responsive performance.</div>
+  </footer>
+
+  <script src="../js/app.js"></script>
+  <script src="../js/ads-config.js"></script>
+  <script>
+
+        const MORSE_MAP = {
+          'A': '.-', 'B': '-...', 'C': '-.-.', 'D': '-..', 'E': '.', 'F': '..-.',
+          'G': '--.', 'H': '....', 'I': '..', 'J': '.---', 'K': '-.-', 'L': '.-..',
+          'M': '--', 'N': '-.', 'O': '---', 'P': '.--.', 'Q': '--.-', 'R': '.-.',
+          'S': '...', 'T': '-', 'U': '..-', 'V': '...-', 'W': '.--', 'X': '-..-',
+          'Y': '-.--', 'Z': '--..', '1': '.----', '2': '..---', '3': '...--',
+          '4': '....-', '5': '.....', '6': '-....', '7': '--...', '8': '---..',
+          '9': '----.', '0': '-----', ' ': '/'
+        };
+        const REVERSE_MORSE = {};
+        for (let k in MORSE_MAP) REVERSE_MORSE[MORSE_MAP[k]] = k;
+
+        let morseMode = 't2m';
+        function setMorseMode(m) {
+          morseMode = m;
+          document.getElementById('m-t2m').className = m === 't2m' ? 'btn btn-primary' : 'btn btn-secondary';
+          document.getElementById('m-m2t').className = m === 'm2t' ? 'btn btn-primary' : 'btn btn-secondary';
+          document.getElementById('m-label').textContent = m === 't2m' ? 'Input Plain Text' : 'Input Morse Code (Dots & Dashes)';
+          translateMorse();
+        }
+        function translateMorse() {
+          const val = document.getElementById('morse-in').value.trim();
+          if (morseMode === 't2m') {
+            const res = val.toUpperCase().split('').map(c => MORSE_MAP[c] || c).join(' ');
+            document.getElementById('morse-out').value = res;
+          } else {
+            const words = val.split(' / ').map(w => w.split(' ').map(c => REVERSE_MORSE[c] || c).join(''));
+            document.getElementById('morse-out').value = words.join(' ');
+          }
+        }
+        function playMorseAudio() {
+          const code = document.getElementById('morse-out').value;
+          if (!code) return;
+          const ctx = new (window.AudioContext || window.webkitAudioContext)();
+          let time = ctx.currentTime + 0.1;
+          const dot = 0.08;
+          for (let i = 0; i < code.length; i++) {
+            const ch = code[i];
+            if (ch === '.' || ch === '-') {
+              const dur = ch === '.' ? dot : dot * 3;
+              const osc = ctx.createOscillator();
+              const gain = ctx.createGain();
+              osc.frequency.value = 650;
+              osc.connect(gain);
+              gain.connect(ctx.destination);
+              osc.start(time);
+              osc.stop(time + dur);
+              time += dur + dot;
+            } else if (ch === ' ') {
+              time += dot * 2;
+            }
+          }
+        }
+        document.getElementById('morse-in').addEventListener('input', translateMorse);
+        translateMorse();
+        
+  </script>
+</body>
+</html>

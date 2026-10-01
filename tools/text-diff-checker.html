@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text Diff Checker - Compare Text Side by Side | OmniUtil</title>
+  <meta name="description" content="Compare two texts and see differences highlighted line by line. Shows added, removed and unchanged lines with statistics.">
+  <link rel="canonical" href="https://shubhamshshaw.github.io/omniutil-suite/tools/text-diff-checker.html">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8836410103198896" crossorigin="anonymous"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css">
+  <style>
+    .diff-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .diff-output { margin-top: 1.5rem; background: var(--bg-secondary); border: 1px solid var(--card-border); border-radius: var(--radius-md); padding: 1rem; font-family: 'Fira Code', monospace; font-size: 0.85rem; min-height: 200px; overflow: auto; max-height: 400px; }
+    .diff-line { padding: 2px 8px; border-radius: 3px; margin: 1px 0; white-space: pre-wrap; }
+    .diff-add { background: rgba(16, 185, 129, 0.15); color: #10b981; }
+    .diff-remove { background: rgba(239, 68, 68, 0.15); color: #ef4444; }
+    .diff-same { color: var(--text-secondary); }
+    .diff-stats { display: flex; gap: 1rem; flex-wrap: wrap; margin: 1rem 0; }
+    .stat-pill { padding: 0.35rem 0.85rem; border-radius: 999px; font-size: 0.8rem; font-weight: 600; }
+    @media (max-width: 768px) { .diff-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <header class="app-header"><div class="header-container">
+    <a href="../index.html" class="brand-logo"><div class="brand-icon">OU</div><span>OmniUtil</span></a>
+    <div class="nav-controls">
+      <button id="search-trigger" class="search-trigger"><span>🔍</span><span>Search tools...</span><span class="shortcut-badge">⌘K</span></button>
+      <button id="theme-toggle" class="btn-icon">☀️</button>
+    </div>
+  </div></header>
+  <main class="main-wrapper"><div class="tool-layout">
+    <div class="tool-card">
+      <div class="tool-header"><div class="tool-title-group">
+        <h1>↔️ Text Diff Checker</h1>
+        <p class="tool-description">Compare two texts side-by-side and see exactly what changed, line by line.</p>
+      </div></div>
+      <div class="diff-grid">
+        <div class="form-group">
+          <label class="form-label">Original Text</label>
+          <textarea id="text-a" class="textarea-field" style="min-height:200px;font-family:'Fira Code',monospace;" placeholder="Paste original text here..."></textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Modified Text</label>
+          <textarea id="text-b" class="textarea-field" style="min-height:200px;font-family:'Fira Code',monospace;" placeholder="Paste modified text here..."></textarea>
+        </div>
+      </div>
+      <div style="display:flex;gap:0.75rem;margin-top:1rem;flex-wrap:wrap;">
+        <button class="btn btn-primary" onclick="runDiff()">Compare Texts</button>
+        <button class="btn btn-secondary" onclick="clearAll()">Clear</button>
+      </div>
+      <div id="diff-stats" class="diff-stats" style="display:none;"></div>
+      <div id="diff-output" class="diff-output" style="display:none;"></div>
+    </div>
+    <aside><div class="ad-unit ad-sidebar"><span class="ad-label">Advertisement</span>
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8836410103198896" data-ad-slot="3000000001" data-ad-format="auto"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div></aside>
+  </div></main>
+  <div id="search-modal-overlay" class="modal-overlay"><div class="search-modal">
+    <div class="search-input-wrapper"><span>🔍</span><input type="text" id="search-input" placeholder="Search utilities..."></div>
+    <div id="search-results" class="search-results"></div>
+  </div></div>
+  <footer class="app-footer"><div class="footer-bottom">&copy; 2026 OmniUtil. All rights reserved.</div></footer>
+  <script src="../js/app.js"></script>
+  <script>
+    function lcs(a, b) {
+      const m = a.length, n = b.length;
+      const dp = Array.from({length: m+1}, () => new Array(n+1).fill(0));
+      for (let i=1;i<=m;i++) for (let j=1;j<=n;j++) {
+        dp[i][j] = a[i-1]===b[j-1] ? dp[i-1][j-1]+1 : Math.max(dp[i-1][j], dp[i][j-1]);
+      }
+      const result = [];
+      let i=m, j=n;
+      while (i>0 || j>0) {
+        if (i>0 && j>0 && a[i-1]===b[j-1]) { result.unshift({type:'same', val:a[i-1]}); i--; j--; }
+        else if (j>0 && (i===0 || dp[i][j-1]>=dp[i-1][j])) { result.unshift({type:'add', val:b[j-1]}); j--; }
+        else { result.unshift({type:'remove', val:a[i-1]}); i--; }
+      }
+      return result;
+    }
+    function runDiff() {
+      const a = document.getElementById('text-a').value.split('\n');
+      const b = document.getElementById('text-b').value.split('\n');
+      const diff = lcs(a, b);
+      let added=0, removed=0, same=0;
+      const lines = diff.map(d => {
+        if (d.type==='add') { added++; return `<div class="diff-line diff-add">+ ${escHtml(d.val)}</div>`; }
+        if (d.type==='remove') { removed++; return `<div class="diff-line diff-remove">- ${escHtml(d.val)}</div>`; }
+        same++; return `<div class="diff-line diff-same">  ${escHtml(d.val)}</div>`;
+      });
+      document.getElementById('diff-output').innerHTML = lines.join('');
+      document.getElementById('diff-output').style.display = 'block';
+      document.getElementById('diff-stats').innerHTML = `
+        <span class="stat-pill" style="background:rgba(16,185,129,.15);color:#10b981;">+${added} Added</span>
+        <span class="stat-pill" style="background:rgba(239,68,68,.15);color:#ef4444;">-${removed} Removed</span>
+        <span class="stat-pill" style="background:rgba(148,163,184,.1);color:var(--text-secondary);">${same} Unchanged</span>`;
+      document.getElementById('diff-stats').style.display = 'flex';
+    }
+    function escHtml(t) { return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+    function clearAll() {
+      document.getElementById('text-a').value='';
+      document.getElementById('text-b').value='';
+      document.getElementById('diff-output').style.display='none';
+      document.getElementById('diff-stats').style.display='none';
+    }
+  </script>
+</body></html>

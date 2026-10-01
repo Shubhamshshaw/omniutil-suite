@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>World Timezone Converter | OmniUtil</title>
+  <meta name="description" content="Convert times across global IANA timezones and schedule international meetings without time zone confusion.">
+  <link rel="canonical" href="https://shubhamshshaw.github.io/omniutil-suite/tools/timezone-converter.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="World Timezone Converter | OmniUtil">
+  <meta property="og:description" content="Convert times across global IANA timezones and schedule international meetings without time zone confusion.">
+  <meta property="og:url" content="https://shubhamshshaw.github.io/omniutil-suite/tools/timezone-converter.html">
+
+  <!-- Google AdSense Verification & Auto ads script -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8836410103198896" crossorigin="anonymous"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/main.css">
+  
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-container">
+      <a href="../index.html" class="brand-logo"><div class="brand-icon">OU</div><span>OmniUtil</span></a>
+      <div class="nav-controls">
+        <button id="search-trigger" class="search-trigger"><span>🔍</span><span>Search tools...</span><span class="shortcut-badge">⌘K</span></button>
+        <button id="theme-toggle" class="btn-icon">☀️</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <div class="tool-layout">
+      <div class="tool-card">
+        <div class="tool-header">
+          <div class="tool-title-group">
+            <h1>🌍 World Timezone Converter</h1>
+            <p class="tool-description">Convert times across global IANA timezones and schedule international meetings without time zone confusion.</p>
+          </div>
+        </div>
+        
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:1.5rem;">
+          <div class="form-group">
+            <label class="form-label">Source Timezone</label>
+            <select id="tz-source" class="select-field" onchange="convertTZ()">
+              <option value="America/New_York">New York (EDT/EST)</option>
+              <option value="America/Los_Angeles">Los Angeles (PDT/PST)</option>
+              <option value="Europe/London" selected>London (GMT/BST)</option>
+              <option value="Europe/Paris">Paris (CEST/CET)</option>
+              <option value="Asia/Dubai">Dubai (GST)</option>
+              <option value="Asia/Kolkata">India (IST)</option>
+              <option value="Asia/Tokyo">Tokyo (JST)</option>
+              <option value="Australia/Sydney">Sydney (AEST)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Destination Timezone</label>
+            <select id="tz-dest" class="select-field" onchange="convertTZ()">
+              <option value="America/New_York">New York (EDT/EST)</option>
+              <option value="America/Los_Angeles">Los Angeles (PDT/PST)</option>
+              <option value="Europe/London">London (GMT/BST)</option>
+              <option value="Europe/Paris">Paris (CEST/CET)</option>
+              <option value="Asia/Dubai">Dubai (GST)</option>
+              <option value="Asia/Kolkata" selected>India (IST)</option>
+              <option value="Asia/Tokyo">Tokyo (JST)</option>
+              <option value="Australia/Sydney">Sydney (AEST)</option>
+            </select>
+          </div>
+        </div>
+        <div style="background:var(--bg-secondary);padding:1.5rem;border-radius:var(--radius-md);border:1px solid var(--card-border);text-align:center;">
+          <div style="font-size:0.9rem;color:var(--text-secondary);">Converted Time at Destination</div>
+          <div id="tz-result" style="font-size:2rem;font-weight:800;color:var(--accent-primary);margin:0.75rem 0;">Loading...</div>
+        </div>
+        
+      </div>
+      <aside>
+        <div class="ad-unit ad-sidebar">
+          <span class="ad-label">Advertisement</span>
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8836410103198896" data-ad-slot="3000000069" data-ad-format="auto"></ins>
+          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <div id="search-modal-overlay" class="modal-overlay">
+    <div class="search-modal">
+      <div class="search-input-wrapper"><span>🔍</span><input type="text" id="search-input" placeholder="Search utilities..."></div>
+      <div id="search-results" class="search-results"></div>
+    </div>
+  </div>
+
+  <footer class="app-footer">
+    <div class="footer-bottom">&copy; 2026 OmniUtil. All rights reserved. Built for maximum speed, security, and responsive performance.</div>
+  </footer>
+
+  <script src="../js/app.js"></script>
+  <script src="../js/ads-config.js"></script>
+  <script>
+
+        function convertTZ() {
+          const dest = document.getElementById('tz-dest').value;
+          const now = new Date();
+          const fmt = new Intl.DateTimeFormat('en-US', {
+            timeZone: dest,
+            dateStyle: 'full',
+            timeStyle: 'long'
+          });
+          document.getElementById('tz-result').textContent = fmt.format(now);
+        }
+        setInterval(convertTZ, 1000);
+        convertTZ();
+        
+  </script>
+</body>
+</html>

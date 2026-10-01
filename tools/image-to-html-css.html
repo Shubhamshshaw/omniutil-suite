@@ -254,7 +254,7 @@
   <div class="pixel-art-core"></div>
 </div>`;
 
-        previewHTML = `<div style="width: ${totalW}px; height: ${totalH}px; position: relative; margin: 0 auto;">
+        previewHTML = `<div style="width: ${totalW}px; height: ${totalH}px; position: relative; margin: auto; flex-shrink: 0;">
   <div style="width: ${pixelSize}px; height: ${pixelSize}px; position: absolute; top: 0; left: 0; background: transparent; box-shadow: ${shadows.join(',')};"></div>
 </div>`;
 
@@ -277,14 +277,14 @@
   grid-template-columns: repeat(${gridW}, ${pixelSize}px);
   grid-template-rows: repeat(${gridH}, ${pixelSize}px);
   width: max-content;
-  margin: 0 auto;
+  margin: auto;
 }
 </style>
 <div class="pixel-grid-container">
   ${pixels.join('\n  ')}
 </div>`;
 
-        previewHTML = `<div style="display: grid; grid-template-columns: repeat(${gridW}, ${pixelSize}px); grid-template-rows: repeat(${gridH}, ${pixelSize}px); width: max-content; margin: 0 auto;">${pixels.join('')}</div>`;
+        previewHTML = `<div style="display: grid; grid-template-columns: repeat(${gridW}, ${pixelSize}px); grid-template-rows: repeat(${gridH}, ${pixelSize}px); width: max-content; margin: auto; flex-shrink: 0;">${pixels.join('')}</div>`;
 
       } else if (mode === 'svg-matrix') {
         const svgPixels = [];
@@ -301,11 +301,11 @@
           }
         }
 
-        generatedCode = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${totalW} ${totalH}" width="${totalW}" height="${totalH}" style="display: block; margin: 0 auto;">
+        generatedCode = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${totalW} ${totalH}" width="${totalW}" height="${totalH}" style="display: block; margin: auto; flex-shrink: 0;">
   ${svgPixels.join('\n  ')}
 </svg>`;
 
-        previewHTML = generatedCode;
+        previewHTML = `<div style="margin: auto; flex-shrink: 0; display: flex; justify-content: center; align-items: center;">${generatedCode}</div>`;
       }
 
       document.getElementById('generated-code').value = generatedCode;
